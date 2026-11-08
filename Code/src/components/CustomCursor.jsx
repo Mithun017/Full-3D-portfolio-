@@ -7,15 +7,19 @@ export default function CustomCursor({ theme = 'dark' }) {
 
   const isLight = theme === 'light';
 
-  // Refs for zero-latency direct DOM animation
+  // Refs for zero-latency direct DOM animation at 60/120 FPS
   const beaconRef = useRef(null);
-  const swimmerRef = useRef(null);
+  const astronautRef = useRef(null);
   const armLRef = useRef(null);
   const armRRef = useRef(null);
+  const gloveLRef = useRef(null);
+  const gloveRRef = useRef(null);
   const legLRef = useRef(null);
   const legRRef = useRef(null);
-  const bubble1Ref = useRef(null);
-  const bubble2Ref = useRef(null);
+  const bootLRef = useRef(null);
+  const bootRRef = useRef(null);
+  const jet1Ref = useRef(null);
+  const jet2Ref = useRef(null);
   const auraCircleRef = useRef(null);
 
   useEffect(() => {
@@ -38,18 +42,18 @@ export default function CustomCursor({ theme = 'dark' }) {
       targetY = e.clientY;
 
       if (!initialized) {
-        curX = targetX - 30;
+        curX = targetX - 35;
         curY = targetY + 20;
         initialized = true;
         setIsVisible(true);
       }
 
-      // Update beacon dot immediately for instantaneous feedback
+      // Precision beacon dot snaps immediately to pointer
       if (beaconRef.current) {
         beaconRef.current.style.transform = `translate3d(${targetX}px, ${targetY}px, 0) translate(-50%, -50%)`;
       }
 
-      // Check if hovering over an interactive element
+      // Check for interactive elements under cursor
       const target = e.target;
       const interactive = Boolean(
         target && target.closest && target.closest('a, button, input, textarea, [role="button"], .interactive')
@@ -65,93 +69,111 @@ export default function CustomCursor({ theme = 'dark' }) {
       setIsVisible(true);
     };
 
-    const updateSwimmer = () => {
+    const updateAstronaut = () => {
       if (initialized) {
         const dx = targetX - curX;
         const dy = targetY - curY;
         const dist = Math.hypot(dx, dy);
 
-        // Fluid celestial inertia lerp towards beacon
-        curX += dx * 0.12;
-        curY += dy * 0.12;
+        // Fluid cosmic inertia glide toward the beacon with distinct zero-g delay
+        curX += dx * 0.045;
+        curY += dy * 0.045;
 
-        // Face towards the target beacon when moving
+        // Smoothly orient astronaut towards beacon direction
         if (dist > 1.5) {
           const targetAngle = Math.atan2(dy, dx) * (180 / Math.PI);
           let diff = targetAngle - curAngle;
           while (diff < -180) diff += 360;
           while (diff > 180) diff -= 360;
-          curAngle += diff * 0.16;
+          curAngle += diff * 0.09;
         }
 
-        // Swimming stroke rate: vigorous when pursuing, gentle zero-g float when near
-        const strokeSpeed = Math.min(dist * 0.065, 0.35);
-        phase += strokeSpeed + 0.028;
+        // Swimming stroke frequency: slow, graceful, and majestic spacewalk swim
+        const strokeSpeed = Math.min(dist * 0.003, 0.04);
+        phase += strokeSpeed + 0.012;
 
-        // Breaststroke / Space-swim kinematics
+        // Space swimming kinematics (Breaststroke sweep + recovery)
         const reach = Math.cos(phase);
         const spread = Math.sin(phase);
 
-        // Arms: Left (top side) & Right (bottom side)
-        const elL_x = 4 + reach * 3.5;
-        const elL_y = -4.5 - Math.max(0, spread) * 3.2;
-        const handL_x = 7 + reach * 6.5;
-        const handL_y = -2 - spread * 4.2;
-
-        const elR_x = 4 + reach * 3.5;
-        const elR_y = 4.5 + Math.max(0, spread) * 3.2;
-        const handR_x = 7 + reach * 6.5;
-        const handR_y = 2 + spread * 4.2;
-
+        // Left Arm & Glove (Top side)
+        const elL_x = 3.5 + reach * 3.5;
+        const elL_y = -5.5 - Math.max(0, spread) * 3.5;
+        const handL_x = 8 + reach * 6.8;
+        const handL_y = -2.5 - spread * 4.5;
         if (armLRef.current) {
-          armLRef.current.setAttribute('d', `M 4 -2 Q ${elL_x} ${elL_y} ${handL_x} ${handL_y}`);
+          armLRef.current.setAttribute('d', `M 3 -3.5 Q ${elL_x} ${elL_y} ${handL_x} ${handL_y}`);
         }
+        if (gloveLRef.current) {
+          gloveLRef.current.setAttribute('cx', handL_x);
+          gloveLRef.current.setAttribute('cy', handL_y);
+        }
+
+        // Right Arm & Glove (Bottom side)
+        const elR_x = 3.5 + reach * 3.5;
+        const elR_y = 5.5 + Math.max(0, spread) * 3.5;
+        const handR_x = 8 + reach * 6.8;
+        const handR_y = 2.5 + spread * 4.5;
         if (armRRef.current) {
-          armRRef.current.setAttribute('d', `M 4 2 Q ${elR_x} ${elR_y} ${handR_x} ${handR_y}`);
+          armRRef.current.setAttribute('d', `M 3 3.5 Q ${elR_x} ${elR_y} ${handR_x} ${handR_y}`);
+        }
+        if (gloveRRef.current) {
+          gloveRRef.current.setAttribute('cx', handR_x);
+          gloveRRef.current.setAttribute('cy', handR_y);
         }
 
-        // Legs: Flutter kick & propulsion
+        // Space Suit Legs & Boots (Propulsion flutter kick)
         const kick = Math.sin(phase);
-        const kneeL_x = -9 - Math.max(0, -reach) * 2;
-        const kneeL_y = -3.5 - kick * 2.2;
-        const footL_x = -15 + reach * 2;
-        const footL_y = -2 - kick * 3.8;
-
-        const kneeR_x = -9 - Math.max(0, -reach) * 2;
-        const kneeR_y = 3.5 + kick * 2.2;
-        const footR_x = -15 + reach * 2;
-        const footR_y = 2 + kick * 3.8;
-
+        const kneeL_x = -10 - Math.max(0, -reach) * 2;
+        const kneeL_y = -4 - kick * 2.5;
+        const footL_x = -16 + reach * 2.2;
+        const footL_y = -2.5 - kick * 4;
         if (legLRef.current) {
-          legLRef.current.setAttribute('d', `M -4 -1.5 Q ${kneeL_x} ${kneeL_y} ${footL_x} ${footL_y}`);
+          legLRef.current.setAttribute('d', `M -5.5 -2 Q ${kneeL_x} ${kneeL_y} ${footL_x} ${footL_y}`);
         }
+        if (bootLRef.current) {
+          bootLRef.current.setAttribute('cx', footL_x);
+          bootLRef.current.setAttribute('cy', footL_y);
+        }
+
+        const kneeR_x = -10 - Math.max(0, -reach) * 2;
+        const kneeR_y = 4 + kick * 2.5;
+        const footR_x = -16 + reach * 2.2;
+        const footR_y = 2.5 + kick * 4;
         if (legRRef.current) {
-          legRRef.current.setAttribute('d', `M -4 1.5 Q ${kneeR_x} ${kneeR_y} ${footR_x} ${footR_y}`);
+          legRRef.current.setAttribute('d', `M -5.5 2 Q ${kneeR_x} ${kneeR_y} ${footR_x} ${footR_y}`);
+        }
+        if (bootRRef.current) {
+          bootRRef.current.setAttribute('cx', footR_x);
+          bootRRef.current.setAttribute('cy', footR_y);
         }
 
-        // Cosmic bubbles behind swimmer's feet
-        if (bubble1Ref.current) {
-          bubble1Ref.current.setAttribute('cx', -15 - Math.abs(kick) * 2.5);
-          bubble1Ref.current.setAttribute('cy', Math.sin(phase * 1.4) * 2);
+        // Jetpack micro-thruster stardust particles
+        const jetDist = 18 + Math.abs(kick) * 4;
+        if (jet1Ref.current) {
+          jet1Ref.current.setAttribute('cx', -jetDist);
+          jet1Ref.current.setAttribute('cy', -2.5 + Math.sin(phase * 1.5) * 1.5);
+          jet1Ref.current.setAttribute('opacity', dist > 2 ? '0.85' : '0.3');
         }
-        if (bubble2Ref.current) {
-          bubble2Ref.current.setAttribute('cx', -18 - Math.abs(kick) * 3.5);
-          bubble2Ref.current.setAttribute('cy', -Math.sin(phase * 1.4) * 2.2);
+        if (jet2Ref.current) {
+          jet2Ref.current.setAttribute('cx', -jetDist - 3);
+          jet2Ref.current.setAttribute('cy', 2.5 - Math.sin(phase * 1.5) * 1.5);
+          jet2Ref.current.setAttribute('opacity', dist > 2 ? '0.7' : '0.2');
         }
 
-        // Apply swimmer transformation
-        if (swimmerRef.current) {
-          swimmerRef.current.style.transform = `translate3d(${curX}px, ${curY}px, 0) translate(-50%, -50%) rotate(${curAngle}deg)`;
+        // Apply astronaut transformation
+        if (astronautRef.current) {
+          astronautRef.current.style.transform = `translate3d(${curX}px, ${curY}px, 0) translate(-50%, -50%) rotate(${curAngle}deg)`;
         }
       }
 
-      frameId = requestAnimationFrame(updateSwimmer);
+      frameId = requestAnimationFrame(updateAstronaut);
     };
 
     window.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseleave', onMouseLeave);
     document.addEventListener('mouseenter', onMouseEnter);
-    frameId = requestAnimationFrame(updateSwimmer);
+    frameId = requestAnimationFrame(updateAstronaut);
 
     return () => {
       window.removeEventListener('mousemove', onMouseMove);
@@ -163,14 +185,16 @@ export default function CustomCursor({ theme = 'dark' }) {
 
   if (!isPointer) return null;
 
+  // Theme palettes
   const goldPrimary = isLight ? '#d97706' : '#fbbf24';
   const goldSecondary = isLight ? '#b45309' : '#f59e0b';
-  const helmetFill = isLight ? '#fef3c7' : '#07050d';
-  const visorColor = isLight ? '#0284c7' : '#67e8f9';
+  const suitBodyFill = isLight ? '#fffbeb' : '#0c0a17';
+  const packFill = isLight ? '#fef3c7' : '#1e1b2e';
+  const collarFill = isLight ? '#b45309' : '#d97706';
 
   return (
     <>
-      {/* Precision Core Beacon Dot (moves first with mouse) */}
+      {/* Precision Core Beacon Dot (moves with cursor) */}
       <div
         ref={beaconRef}
         className={`fixed top-0 left-0 pointer-events-none z-[9999] rounded-full transition-opacity duration-150 ${
@@ -186,129 +210,209 @@ export default function CustomCursor({ theme = 'dark' }) {
         }}
       />
 
-      {/* Cosmic Orbit Swimmer (Stickman Astronaut trailing & swimming toward beacon) */}
+      {/* Astronaut in Spacesuit Swimming Through Celestial Orbit */}
       <div
-        ref={swimmerRef}
+        ref={astronautRef}
         className={`fixed top-0 left-0 pointer-events-none z-[9998] transition-opacity duration-200 ${
           isVisible ? 'opacity-100' : 'opacity-0'
         }`}
         style={{
-          width: isHovered ? '38px' : '32px',
-          height: isHovered ? '38px' : '32px',
+          width: isHovered ? '70px' : '60px',
+          height: isHovered ? '70px' : '60px',
           filter: isHovered
-            ? `drop-shadow(0 0 8px ${goldPrimary}) drop-shadow(0 0 14px ${goldSecondary}80)`
-            : `drop-shadow(0 0 4px ${goldPrimary}90)`,
+            ? `drop-shadow(0 0 14px ${goldPrimary}) drop-shadow(0 0 24px ${goldSecondary}80)`
+            : `drop-shadow(0 0 7px ${goldPrimary}90)`,
           transition: 'width 0.25s ease-out, height 0.25s ease-out, filter 0.25s ease-out',
         }}
       >
-        <svg viewBox="-20 -20 40 40" className="w-full h-full overflow-visible">
-          {/* Subtle Celestial Orbit Ring (expands on hover) */}
+        <svg viewBox="-24 -24 48 48" className="w-full h-full overflow-visible">
+          <defs>
+            {/* Metallic Gold / Cyan Visor Gradient */}
+            <linearGradient id="astroVisorGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#38bdf8" />
+              <stop offset="60%" stopColor={goldSecondary} />
+              <stop offset="100%" stopColor={goldPrimary} />
+            </linearGradient>
+          </defs>
+
+          {/* Faint Orbit Ring Guide */}
           <circle
             ref={auraCircleRef}
             cx="0"
             cy="0"
-            r={isHovered ? 17 : 14}
+            r={isHovered ? 19 : 16}
             fill="none"
             stroke={goldPrimary}
             strokeWidth={isHovered ? 1.2 : 0.75}
             strokeDasharray={isHovered ? '3 3' : '2 4'}
-            opacity={isHovered ? 0.6 : 0.28}
+            opacity={isHovered ? 0.6 : 0.25}
             className="transition-all duration-300"
           />
 
-          {/* Stardust propulsion bubbles trailing behind feet */}
+          {/* PLSS Jetpack Micro-thruster Dust / Bubbles */}
           <circle
-            ref={bubble1Ref}
-            cx="-15"
-            cy="0"
-            r="1.1"
+            ref={jet1Ref}
+            cx="-18"
+            cy="-2.5"
+            r="1.2"
+            fill={isLight ? '#0284c7' : '#38bdf8'}
+            opacity="0.75"
+          />
+          <circle
+            ref={jet2Ref}
+            cx="-21"
+            cy="2.5"
+            r="0.9"
             fill={goldPrimary}
             opacity="0.65"
           />
-          <circle
-            ref={bubble2Ref}
-            cx="-18"
-            cy="0"
-            r="0.75"
-            fill={goldSecondary}
-            opacity="0.4"
-          />
 
-          {/* Stickman Left & Right Legs */}
+          {/* PLSS Astronaut Backpack (Life Support System) */}
+          <rect
+            x="-6"
+            y="-5.5"
+            width="4"
+            height="11"
+            rx="2"
+            fill={packFill}
+            stroke={goldSecondary}
+            strokeWidth="1.3"
+          />
+          <line x1="-6" y1="-2" x2="-2" y2="-2" stroke={goldSecondary} strokeWidth="0.8" opacity="0.6" />
+          <line x1="-6" y1="2" x2="-2" y2="2" stroke={goldSecondary} strokeWidth="0.8" opacity="0.6" />
+
+          {/* Pressurized Suit Left Leg & Boot */}
           <path
             ref={legLRef}
             stroke={goldPrimary}
-            strokeWidth="1.75"
+            strokeWidth="2.8"
             strokeLinecap="round"
             strokeLinejoin="round"
             fill="none"
           />
+          <ellipse
+            ref={bootLRef}
+            cx="-15"
+            cy="-2"
+            rx="2.2"
+            ry="1.5"
+            fill={goldSecondary}
+            stroke={goldPrimary}
+            strokeWidth="0.8"
+          />
+
+          {/* Pressurized Suit Right Leg & Boot */}
           <path
             ref={legRRef}
             stroke={goldPrimary}
-            strokeWidth="1.75"
+            strokeWidth="2.8"
             strokeLinecap="round"
             strokeLinejoin="round"
             fill="none"
           />
-
-          {/* Stickman Spine / Torso */}
-          <line
-            x1="5"
-            y1="0"
-            x2="-4"
-            y2="0"
-            stroke={goldPrimary}
-            strokeWidth="2"
-            strokeLinecap="round"
-          />
-
-          {/* Astronaut Life-Support Backpack */}
-          <rect
-            x="-3"
-            y="-3.5"
-            width="3.5"
-            height="7"
-            rx="1.4"
+          <ellipse
+            ref={bootRRef}
+            cx="-15"
+            cy="2"
+            rx="2.2"
+            ry="1.5"
             fill={goldSecondary}
-            opacity="0.8"
+            stroke={goldPrimary}
+            strokeWidth="0.8"
           />
 
-          {/* Stickman Left & Right Arms */}
+          {/* Space Suit Puffy Torso */}
+          <path
+            d="M 4 -4 Q -1 -5 -6 -3.5 L -6 3.5 Q -1 5 4 4 Z"
+            fill={suitBodyFill}
+            stroke={goldPrimary}
+            strokeWidth="1.6"
+            strokeLinejoin="round"
+          />
+
+          {/* Chest Mission Telemetry / Life-Support Module */}
+          <rect
+            x="-2.5"
+            y="-2"
+            width="4.5"
+            height="4"
+            rx="1"
+            fill={packFill}
+            stroke={goldSecondary}
+            strokeWidth="0.8"
+          />
+          <circle cx="-1.2" cy="-0.8" r="0.55" fill="#10b981" />
+          <circle cx="0.5" cy="-0.8" r="0.55" fill="#f59e0b" />
+          <line x1="-1.5" y1="0.8" x2="1" y2="0.8" stroke="#38bdf8" strokeWidth="0.65" />
+
+          {/* Space Suit Left Sleeve & Gauntlet Glove */}
           <path
             ref={armLRef}
             stroke={goldPrimary}
-            strokeWidth="1.75"
+            strokeWidth="2.6"
             strokeLinecap="round"
             strokeLinejoin="round"
             fill="none"
           />
+          <circle
+            ref={gloveLRef}
+            cx="8"
+            cy="-2"
+            r="1.6"
+            fill={goldSecondary}
+            stroke={goldPrimary}
+            strokeWidth="0.8"
+          />
+
+          {/* Space Suit Right Sleeve & Gauntlet Glove */}
           <path
             ref={armRRef}
             stroke={goldPrimary}
-            strokeWidth="1.75"
+            strokeWidth="2.6"
             strokeLinecap="round"
             strokeLinejoin="round"
             fill="none"
           />
+          <circle
+            ref={gloveRRef}
+            cx="8"
+            cy="2"
+            r="1.6"
+            fill={goldSecondary}
+            stroke={goldPrimary}
+            strokeWidth="0.8"
+          />
 
-          {/* Astronaut Helmet / Head */}
+          {/* Neck Ring Hermetic Seal */}
+          <ellipse cx="4.5" cy="0" rx="1.2" ry="3.2" fill={collarFill} />
+
+          {/* Astronaut Helmet */}
           <circle
             cx="8"
             cy="0"
-            r="3.4"
-            fill={helmetFill}
+            r="4.6"
+            fill={suitBodyFill}
             stroke={goldPrimary}
-            strokeWidth="1.75"
+            strokeWidth="1.6"
           />
 
-          {/* Glowing Visor */}
-          <circle
-            cx="9.4"
+          {/* Tinted Reflective Visor */}
+          <ellipse
+            cx="9.5"
             cy="0"
-            r="1.2"
-            fill={visorColor}
-            opacity="0.95"
+            rx="3.2"
+            ry="2.8"
+            fill="url(#astroVisorGlow)"
+          />
+
+          {/* Visor Glare Specular Sheen */}
+          <path
+            d="M 8.5 -1.8 Q 11.2 -1.2 11.5 0"
+            stroke="#ffffff"
+            strokeWidth="0.8"
+            strokeLinecap="round"
+            fill="none"
+            opacity="0.9"
           />
         </svg>
       </div>
