@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="solareGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="50%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+  </defs>
+  <!-- Hollow Architectural M Monogram -->
+  <path d="M16 82 L16 18 L50 56 L84 18 L84 82" 
+        fill="none" 
+        stroke="url(#solareGold)" 
+        stroke-width="13" 
+        stroke-linecap="round" 
+        stroke-linejoin="round" />
+</svg>

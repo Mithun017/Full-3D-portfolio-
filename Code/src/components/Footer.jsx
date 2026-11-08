@@ -25,9 +25,14 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-12 border-b border-zinc-200 dark:border-zinc-800/60">
           {/* Identity */}
           <div className="space-y-3 max-w-xl">
-            <div className="flex items-center gap-2">
-              <span className="font-display font-black text-lg text-gold-gradient">
-                ◈ MITHUN
+            <div className="flex items-center gap-2.5">
+              <div className="w-6 h-6 rounded-md bg-amber-500/10 border border-amber-500/25 flex items-center justify-center text-amber-600 dark:text-amber-400">
+                <svg className="w-3.5 h-3.5" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="13" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M16 82 L16 18 L50 56 L84 18 L84 82" />
+                </svg>
+              </div>
+              <span className="font-display font-black text-lg text-gold-gradient tracking-wide">
+                MITHUN
               </span>
               <span className="text-zinc-400 dark:text-zinc-600">&bull;</span>
               <span className="font-mono text-xs text-zinc-600 dark:text-zinc-400 font-medium">

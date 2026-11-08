@@ -36,8 +36,10 @@ export default function Navbar({ onOpenTerminal, theme, onToggleTheme }) {
           href="#"
           className="group flex items-center gap-3 transition-transform duration-300 hover:scale-105"
         >
-          <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-amber-400/25 to-amber-600/10 border border-amber-500/30 flex items-center justify-center text-amber-500 dark:text-amber-300 group-hover:border-amber-400 group-hover:shadow-[0_0_15px_rgba(245,158,11,0.3)] transition-all">
-            <span className="font-display font-black text-sm tracking-widest">◈</span>
+          <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-amber-400/25 to-amber-600/10 border border-amber-500/30 flex items-center justify-center text-amber-600 dark:text-amber-400 group-hover:border-amber-400 group-hover:shadow-[0_0_15px_rgba(245,158,11,0.3)] transition-all">
+            <svg className="w-4 h-4 transition-transform group-hover:scale-110" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="13" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M16 82 L16 18 L50 56 L84 18 L84 82" />
+            </svg>
           </div>
           <div>
             <div className="font-display font-bold tracking-widest text-sm text-zinc-900 dark:text-zinc-100 flex items-center gap-1.5">
