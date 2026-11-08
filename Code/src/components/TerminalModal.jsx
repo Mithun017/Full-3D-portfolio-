@@ -21,9 +21,6 @@ const NEOFETCH_TEXT = [
 ].join('\n');
 
 const getInitialHistory = () => [
-  { type: 'system', text: 'Connecting to MITHUN-OS v2.4 (x86_64-pc-linux-gnu)...' },
-  { type: 'system', text: 'Session authenticated: mithun@cosmic-node-01' },
-  { type: 'input', text: 'mithun@universe:~$ neofetch' },
   { type: 'neofetch', text: NEOFETCH_TEXT },
   {
     type: 'welcome',
