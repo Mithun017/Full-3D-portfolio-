@@ -280,3 +280,4 @@ export default function TerminalModal({ isOpen, onClose }) {
     </div>
   );
 }
+
