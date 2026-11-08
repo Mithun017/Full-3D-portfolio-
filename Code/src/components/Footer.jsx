@@ -26,10 +26,9 @@ export default function Footer() {
           {/* Identity */}
           <div className="space-y-3 max-w-xl">
             <div className="flex items-center gap-2.5">
-              <div className="w-6 h-6 rounded-full bg-amber-500/10 border border-amber-500/25 flex items-center justify-center text-amber-600 dark:text-amber-400">
-                <svg className="w-3.5 h-3.5" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="50" cy="50" r="43" strokeWidth="7" />
-                  <path d="M26 70 L26 30 L50 54 L74 30 L74 70" strokeWidth="9" />
+              <div className="w-6 h-6 rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-600 dark:text-amber-400">
+                <svg className="w-3.5 h-3.5" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="13" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18 80 L18 20 L50 54 L82 20 L82 80" />
                 </svg>
               </div>
               <span className="font-display font-black text-lg text-gold-gradient tracking-wide">
