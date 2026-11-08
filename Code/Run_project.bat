@@ -1,10 +1,10 @@
 @echo off
-setlocal enabledelayedexpansion
-title M Mithun — 3D Celestial Portfolio & Terminal System
+setlocal
+title M Mithun - 3D Celestial Portfolio
 
 echo ===================================================================
-echo     M MITHUN — 3D CELESTIAL PORTFOLIO & UBUNTU TERMINAL SYSTEM
-echo     AI & Data Science | Sri Eshwar College of Engineering
+echo     M MITHUN - 3D CELESTIAL PORTFOLIO AND TERMINAL SYSTEM
+echo     AI and Data Science - Sri Eshwar College of Engineering
 echo ===================================================================
 echo.
 
@@ -23,7 +23,7 @@ if %errorlevel% neq 0 (
 
 :: Check if node_modules exists, if not install dependencies
 if not exist "node_modules" (
-    echo [INFO] Installing required dependencies (Three.js, React, Lucide, Tailwind)...
+    echo [INFO] Installing required dependencies...
     call npm install
     if %errorlevel% neq 0 (
         echo [ERROR] npm install encountered an error.
@@ -34,15 +34,14 @@ if not exist "node_modules" (
     echo.
 )
 
-echo [INFO] Launching 3D Celestial Portfolio on http://localhost:3000 ...
-echo [INFO] Opening default web browser...
+echo [INFO] Starting Vite development server...
+echo [INFO] Opening web browser at http://localhost:3000 ...
 echo.
 
-:: Wait 2 seconds and open browser
-start "" http://localhost:3000
+:: Open browser automatically
+start http://localhost:3000
 
 :: Start the Vite development server
 call npm run dev
 
 pause
-
