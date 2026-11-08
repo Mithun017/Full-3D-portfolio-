@@ -2,8 +2,6 @@ import React, { useState, useMemo } from 'react';
 import {
   Sparkles,
   Search,
-  ExternalLink,
-  Layers,
   Activity,
   ShieldAlert,
   Globe,
@@ -24,7 +22,6 @@ import {
 import { portfolioData } from '../data/portfolioData';
 import ProjectModal from './ProjectModal';
 
-// Icon mapping helper
 const iconMap = {
   Activity,
   ShieldAlert,
@@ -75,29 +72,29 @@ export default function ProjectsSection() {
     <section id="projects" className="relative py-28 px-4 sm:px-6 lg:px-8 z-10 max-w-7xl mx-auto">
       {/* Section Header */}
       <div className="flex items-center gap-4 mb-4">
-        <span className="font-mono text-xs text-amber-400 tracking-widest uppercase">03 // ARTIFACTS</span>
-        <div className="h-px flex-1 bg-gradient-to-r from-amber-500/30 to-transparent"></div>
+        <span className="font-mono text-xs text-amber-700 dark:text-amber-400 tracking-widest uppercase">03 // ARTIFACTS</span>
+        <div className="h-px flex-1 bg-gradient-to-r from-amber-500/40 dark:from-amber-500/30 to-transparent"></div>
       </div>
 
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
         <div>
-          <h2 className="font-display font-black text-3xl sm:text-5xl text-white uppercase tracking-tight">
+          <h2 className="font-display font-black text-3xl sm:text-5xl text-zinc-900 dark:text-white uppercase tracking-tight">
             Selected <span className="text-gold-gradient">Deployments</span>
           </h2>
-          <p className="font-mono text-xs text-zinc-400 mt-2 uppercase tracking-wider">
+          <p className="font-mono text-xs text-zinc-600 dark:text-zinc-400 mt-2 uppercase tracking-wider">
             All 15 production & research projects built with high fidelity
           </p>
         </div>
 
         {/* Search Input */}
         <div className="relative w-full md:w-72">
-          <Search className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+          <Search className="w-4 h-4 text-zinc-500 dark:text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search stack, title, domain..."
-            className="w-full pl-10 pr-4 py-2 rounded-full bg-zinc-900/80 border border-zinc-800 text-xs text-zinc-200 placeholder:text-zinc-500 focus:outline-none focus:border-amber-500/50 transition-colors"
+            className="w-full pl-10 pr-4 py-2 rounded-full bg-white dark:bg-zinc-900/80 border border-zinc-200 dark:border-zinc-800 text-xs text-zinc-900 dark:text-zinc-200 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:outline-none focus:border-amber-500/60 shadow-sm dark:shadow-none transition-colors"
           />
         </div>
       </div>
@@ -110,8 +107,8 @@ export default function ProjectsSection() {
             onClick={() => setActiveCategory(cat)}
             className={`px-4 py-1.5 rounded-full text-xs font-mono tracking-wide whitespace-nowrap transition-all duration-200 border ${
               activeCategory === cat
-                ? 'bg-amber-500/15 border-amber-500/60 text-amber-300 shadow-[0_0_15px_rgba(245,158,11,0.2)]'
-                : 'bg-zinc-950/60 border-zinc-800/80 text-zinc-400 hover:text-zinc-200 hover:border-zinc-700'
+                ? 'bg-amber-500/15 border-amber-600/60 dark:border-amber-500/60 text-amber-800 dark:text-amber-300 font-semibold shadow-sm dark:shadow-[0_0_15px_rgba(245,158,11,0.2)]'
+                : 'bg-white/80 dark:bg-zinc-950/60 border-zinc-200 dark:border-zinc-800/80 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 hover:border-zinc-300 dark:hover:border-zinc-700 shadow-sm dark:shadow-none'
             }`}
           >
             {cat}
@@ -128,30 +125,30 @@ export default function ProjectsSection() {
             <div
               key={project.id}
               onClick={() => setSelectedProject(project)}
-              className="group glass-panel glass-panel-hover rounded-2xl p-6 border border-zinc-800/80 flex flex-col justify-between cursor-pointer relative overflow-hidden"
+              className="group glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between cursor-pointer relative overflow-hidden"
             >
               {/* Top Accent Gradient */}
-              <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-amber-500/30 to-transparent group-hover:via-amber-400 transition-all"></div>
+              <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-amber-500/30 to-transparent group-hover:via-amber-500 transition-all"></div>
 
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 group-hover:scale-110 group-hover:border-amber-400/50 transition-all duration-300">
+                  <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-600 dark:text-amber-400 group-hover:scale-110 group-hover:border-amber-500/50 transition-all duration-300">
                     <IconComponent className="w-5 h-5" />
                   </div>
-                  <span className="font-mono text-[10px] text-zinc-400 px-2.5 py-0.5 rounded-full bg-zinc-900 border border-zinc-800">
+                  <span className="font-mono text-[10px] text-zinc-500 dark:text-zinc-400 px-2.5 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 font-medium">
                     {project.badge}
                   </span>
                 </div>
 
-                <h3 className="font-display font-bold text-lg text-zinc-100 group-hover:text-amber-300 transition-colors line-clamp-1 mb-1">
+                <h3 className="font-display font-bold text-lg text-zinc-900 dark:text-zinc-100 group-hover:text-amber-600 dark:group-hover:text-amber-300 transition-colors line-clamp-1 mb-1">
                   {project.title}
                 </h3>
 
-                <p className="font-editorial text-xs text-amber-400/80 font-medium mb-3 line-clamp-1">
+                <p className="font-editorial text-xs text-amber-700 dark:text-amber-400/80 font-medium mb-3 line-clamp-1">
                   {project.tagline}
                 </p>
 
-                <p className="text-xs text-zinc-400 font-light leading-relaxed line-clamp-3 mb-6">
+                <p className="text-xs text-zinc-600 dark:text-zinc-400 font-light leading-relaxed line-clamp-3 mb-6">
                   {project.overview}
                 </p>
               </div>
@@ -162,20 +159,20 @@ export default function ProjectsSection() {
                   {project.techStack.slice(0, 3).map((tech, i) => (
                     <span
                       key={i}
-                      className="px-2 py-0.5 rounded text-[10px] font-mono bg-zinc-900 border border-zinc-800 text-zinc-400"
+                      className="px-2 py-0.5 rounded text-[10px] font-mono bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400"
                     >
                       {tech}
                     </span>
                   ))}
                   {project.techStack.length > 3 && (
-                    <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-zinc-900 border border-zinc-800 text-zinc-500">
+                    <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-400 dark:text-zinc-500">
                       +{project.techStack.length - 3}
                     </span>
                   )}
                 </div>
 
                 {/* Card CTA */}
-                <div className="flex items-center justify-between pt-4 border-t border-zinc-800/60 text-xs font-mono text-zinc-400 group-hover:text-amber-300 transition-colors">
+                <div className="flex items-center justify-between pt-4 border-t border-zinc-200/80 dark:border-zinc-800/60 text-xs font-mono text-zinc-500 dark:text-zinc-400 group-hover:text-amber-700 dark:group-hover:text-amber-300 transition-colors">
                   <span>Inspect System</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </div>
@@ -201,4 +198,3 @@ export default function ProjectsSection() {
     </section>
   );
 }
-

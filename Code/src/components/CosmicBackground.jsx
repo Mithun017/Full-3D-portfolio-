@@ -7,17 +7,50 @@ import * as THREE from 'three';
  * - Concentric orbiting golden & amber solar rings
  * - Central luminous solar core with orbital nodes
  * - Parallax particle dust field reacting smoothly to mouse & scroll
+ * - Dynamic light/dark theme adaptation with smooth fog transitions
  */
-export default function CosmicBackground() {
+export default function CosmicBackground({ theme = 'dark' }) {
   const containerRef = useRef(null);
+  const themeStateRef = useRef({ theme });
+  const sceneRef = useRef(null);
+  const ringsRef = useRef([]);
+  const coreMaterialsRef = useRef({});
+
+  themeStateRef.current = { theme };
+
+  useEffect(() => {
+    const isLight = theme === 'light';
+    if (sceneRef.current) {
+      sceneRef.current.fog.color.setHex(isLight ? 0xfaf8f5 : 0x050409);
+    }
+    if (coreMaterialsRef.current.coreMaterial) {
+      coreMaterialsRef.current.coreMaterial.color.setHex(isLight ? 0xd97706 : 0xf59e0b);
+      coreMaterialsRef.current.coreMaterial.opacity = isLight ? 0.25 : 0.35;
+    }
+    if (coreMaterialsRef.current.innerCoreMat) {
+      coreMaterialsRef.current.innerCoreMat.color.setHex(isLight ? 0xf59e0b : 0xfbbf24);
+      coreMaterialsRef.current.innerCoreMat.opacity = isLight ? 0.1 : 0.2;
+    }
+    if (ringsRef.current.length > 0) {
+      ringsRef.current.forEach((r, idx) => {
+        const darkColors = [0xfbbf24, 0xf59e0b, 0xd97706, 0xfde68a, 0x38bdf8];
+        const lightColors = [0xd97706, 0xb45309, 0x92400e, 0xf59e0b, 0x0284c7];
+        r.mesh.material.color.setHex(isLight ? lightColors[idx % 5] : darkColors[idx % 5]);
+        r.mesh.material.opacity = isLight ? 0.42 : 0.55;
+      });
+    }
+  }, [theme]);
 
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
+    const isLight = themeStateRef.current.theme === 'light';
+
     // --- Scene, Camera, Renderer ---
     const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x050409, 0.0018);
+    sceneRef.current = scene;
+    scene.fog = new THREE.FogExp2(isLight ? 0xfaf8f5 : 0x050409, 0.0018);
 
     const camera = new THREE.PerspectiveCamera(
       60,
@@ -45,10 +78,10 @@ export default function CosmicBackground() {
     // Inner wireframe sphere
     const coreGeometry = new THREE.IcosahedronGeometry(3.6, 3);
     const coreMaterial = new THREE.MeshBasicMaterial({
-      color: 0xf59e0b,
+      color: isLight ? 0xd97706 : 0xf59e0b,
       wireframe: true,
       transparent: true,
-      opacity: 0.35,
+      opacity: isLight ? 0.25 : 0.35,
     });
     const coreMesh = new THREE.Mesh(coreGeometry, coreMaterial);
     coreGroup.add(coreMesh);
@@ -56,15 +89,17 @@ export default function CosmicBackground() {
     // Inner glowing sphere
     const innerCoreGeo = new THREE.SphereGeometry(2.4, 32, 32);
     const innerCoreMat = new THREE.MeshBasicMaterial({
-      color: 0xfbbf24,
+      color: isLight ? 0xf59e0b : 0xfbbf24,
       transparent: true,
-      opacity: 0.2,
+      opacity: isLight ? 0.1 : 0.2,
       wireframe: false,
     });
     const innerCore = new THREE.Mesh(innerCoreGeo, innerCoreMat);
     coreGroup.add(innerCore);
 
-    // --- Casa di Solare Concentric Rotating Solar Rings ---
+    coreMaterialsRef.current = { coreMaterial, innerCoreMat };
+
+    // --- Concentric Solar Rings ---
     const ringsGroup = new THREE.Group();
     scene.add(ringsGroup);
 
@@ -76,13 +111,15 @@ export default function CosmicBackground() {
       { radius: 22.0, tube: 0.025, radialSegments: 16, tubularSegments: 200, color: 0x38bdf8, rotX: -1.4, rotY: -0.6, speed: 0.001 },
     ];
 
-    const rings = ringData.map((data) => {
+    const rings = ringData.map((data, idx) => {
       const geom = new THREE.TorusGeometry(data.radius, data.tube, data.radialSegments, data.tubularSegments);
+      const darkColors = [0xfbbf24, 0xf59e0b, 0xd97706, 0xfde68a, 0x38bdf8];
+      const lightColors = [0xd97706, 0xb45309, 0x92400e, 0xf59e0b, 0x0284c7];
       const mat = new THREE.MeshBasicMaterial({
-        color: data.color,
+        color: isLight ? lightColors[idx] : darkColors[idx],
         wireframe: false,
         transparent: true,
-        opacity: 0.55
+        opacity: isLight ? 0.42 : 0.55
       });
       const mesh = new THREE.Mesh(geom, mat);
       mesh.rotation.x = data.rotX;
@@ -90,10 +127,11 @@ export default function CosmicBackground() {
       ringsGroup.add(mesh);
       return { mesh, speed: data.speed, initialX: data.rotX, initialY: data.rotY };
     });
+    ringsRef.current = rings;
 
-    // --- Orbital Nodes / Satellite Gems on the rings ---
+    // --- Orbital Nodes ---
     const nodeGeometry = new THREE.OctahedronGeometry(0.35, 0);
-    const nodeMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true });
+    const nodeMaterial = new THREE.MeshBasicMaterial({ color: 0xd97706, wireframe: true });
     const nodes = [];
     for (let i = 0; i < 8; i++) {
       const node = new THREE.Mesh(nodeGeometry, nodeMaterial);
@@ -105,16 +143,16 @@ export default function CosmicBackground() {
     }
 
     // --- Ambient Particle Dust Field ---
-    const particleCount = 1200;
+    const particleCount = 1100;
     const particleGeometry = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
 
-    const colorPalette = [
-      new THREE.Color(0xfbbf24), // Gold
-      new THREE.Color(0xf59e0b), // Amber
-      new THREE.Color(0x38bdf8), // Cyan
-      new THREE.Color(0xe0e7ff), // Soft white
+    const darkPalette = [
+      new THREE.Color(0xfbbf24),
+      new THREE.Color(0xf59e0b),
+      new THREE.Color(0x38bdf8),
+      new THREE.Color(0xe0e7ff),
     ];
 
     for (let i = 0; i < particleCount; i++) {
@@ -122,7 +160,7 @@ export default function CosmicBackground() {
       positions[i * 3 + 1] = (Math.random() - 0.5) * 120;
       positions[i * 3 + 2] = (Math.random() - 0.5) * 90;
 
-      const c = colorPalette[Math.floor(Math.random() * colorPalette.length)];
+      const c = darkPalette[Math.floor(Math.random() * darkPalette.length)];
       colors[i * 3] = c.r;
       colors[i * 3 + 1] = c.g;
       colors[i * 3 + 2] = c.b;
@@ -135,8 +173,8 @@ export default function CosmicBackground() {
       size: 0.45,
       vertexColors: true,
       transparent: true,
-      opacity: 0.7,
-      blending: THREE.AdditiveBlending,
+      opacity: 0.65,
+      blending: THREE.NormalBlending,
     });
 
     const particles = new THREE.Points(particleGeometry, particleMaterial);
@@ -177,28 +215,22 @@ export default function CosmicBackground() {
       animationFrameId = requestAnimationFrame(animate);
       const elapsedTime = clock.getElapsedTime();
 
-      // Smooth mouse interpolation
       targetX += (mouseX - targetX) * 0.05;
       targetY += (mouseY - targetY) * 0.05;
-
-      // Smooth scroll interpolation
       scrollY += (targetScrollY - scrollY) * 0.05;
 
-      // Rotate central core
       coreMesh.rotation.x = elapsedTime * 0.2;
       coreMesh.rotation.y = elapsedTime * 0.3;
       innerCore.rotation.y = -elapsedTime * 0.15;
       const corePulse = 1 + Math.sin(elapsedTime * 1.5) * 0.06;
       coreGroup.scale.set(corePulse, corePulse, corePulse);
 
-      // Rotate Concentric Rings
       rings.forEach((ring, idx) => {
         ring.mesh.rotation.z += ring.speed;
         ring.mesh.rotation.x = ring.initialX + Math.sin(elapsedTime * 0.5 + idx) * 0.12;
         ring.mesh.rotation.y = ring.initialY + Math.cos(elapsedTime * 0.4 + idx) * 0.12;
       });
 
-      // Animate Orbiting Nodes
       nodes.forEach((node) => {
         node.angle += node.speed;
         node.mesh.position.x = Math.cos(node.angle) * node.radius;
@@ -207,11 +239,9 @@ export default function CosmicBackground() {
         node.mesh.rotation.y += 0.04;
       });
 
-      // Subtle particle drift
       particles.rotation.y = elapsedTime * 0.02;
       particles.rotation.x = elapsedTime * 0.01;
 
-      // Camera parallax based on mouse & scroll
       camera.position.x = targetX * 6;
       camera.position.y = targetY * 4 - scrollY * 0.012;
       camera.lookAt(0, -scrollY * 0.012, 0);
@@ -231,7 +261,6 @@ export default function CosmicBackground() {
         container.removeChild(renderer.domElement);
       }
 
-      // Dispose geometry and materials
       coreGeometry.dispose();
       coreMaterial.dispose();
       innerCoreGeo.dispose();
@@ -256,4 +285,3 @@ export default function CosmicBackground() {
     />
   );
 }
-

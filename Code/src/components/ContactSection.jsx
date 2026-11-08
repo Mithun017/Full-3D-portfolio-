@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, Check, Copy, Github, Linkedin, ExternalLink, Sparkles } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Check, Copy, Github, Linkedin, Sparkles } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { portfolioData } from '../data/portfolioData';
 
@@ -38,15 +38,15 @@ export default function ContactSection() {
     <section id="contact" className="relative py-28 px-4 sm:px-6 lg:px-8 z-10 max-w-7xl mx-auto">
       {/* Section Header */}
       <div className="flex items-center gap-4 mb-4">
-        <span className="font-mono text-xs text-amber-400 tracking-widest uppercase">05 // TRANSMISSION</span>
-        <div className="h-px flex-1 bg-gradient-to-r from-amber-500/30 to-transparent"></div>
+        <span className="font-mono text-xs text-amber-700 dark:text-amber-400 tracking-widest uppercase">05 // TRANSMISSION</span>
+        <div className="h-px flex-1 bg-gradient-to-r from-amber-500/40 dark:from-amber-500/30 to-transparent"></div>
       </div>
 
       <div className="mb-12">
-        <h2 className="font-display font-black text-3xl sm:text-5xl text-white uppercase tracking-tight">
+        <h2 className="font-display font-black text-3xl sm:text-5xl text-zinc-900 dark:text-white uppercase tracking-tight">
           Initiate <span className="text-gold-gradient">Collaboration</span>
         </h2>
-        <p className="font-mono text-xs text-zinc-400 mt-2 uppercase tracking-wider">
+        <p className="font-mono text-xs text-zinc-600 dark:text-zinc-400 mt-2 uppercase tracking-wider">
           Let's connect for high-impact AI/ML systems, research collaborations, or engineering ventures
         </p>
       </div>
@@ -55,19 +55,19 @@ export default function ContactSection() {
         {/* Contact Information & Channels */}
         <div className="lg:col-span-5 space-y-4">
           {/* Direct Email Card */}
-          <div className="glass-panel p-6 rounded-2xl border border-zinc-800/80 hover:border-amber-500/30 transition-all">
+          <div className="glass-panel p-6 rounded-2xl shadow-sm dark:shadow-none hover:border-amber-500/40 transition-all">
             <div className="flex items-center justify-between mb-2">
-              <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider">
+              <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider font-semibold">
                 Direct Email Channel
               </span>
               <button
                 onClick={() => copyToClipboard(contact.email, 'email')}
-                className="flex items-center gap-1 text-[11px] font-mono text-amber-400 hover:text-amber-300 transition-colors"
+                className="flex items-center gap-1 text-[11px] font-mono text-amber-700 dark:text-amber-400 hover:text-amber-600 dark:hover:text-amber-300 transition-colors font-medium"
               >
                 {copiedField === 'email' ? (
                   <>
-                    <Check className="w-3.5 h-3.5 text-emerald-400" />
-                    <span className="text-emerald-400">Copied!</span>
+                    <Check className="w-3.5 h-3.5 text-emerald-500" />
+                    <span className="text-emerald-600 dark:text-emerald-400 font-semibold">Copied!</span>
                   </>
                 ) : (
                   <>
@@ -79,9 +79,9 @@ export default function ContactSection() {
             </div>
             <a
               href={`mailto:${contact.email}`}
-              className="flex items-center gap-3 text-zinc-100 hover:text-amber-300 transition-colors group"
+              className="flex items-center gap-3 text-zinc-900 dark:text-zinc-100 hover:text-amber-700 dark:hover:text-amber-300 transition-colors group"
             >
-              <div className="w-9 h-9 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 group-hover:scale-105 transition-transform">
+              <div className="w-9 h-9 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-600 dark:text-amber-400 group-hover:scale-105 transition-transform">
                 <Mail className="w-4 h-4" />
               </div>
               <span className="font-mono text-sm sm:text-base font-medium break-all">
@@ -91,19 +91,19 @@ export default function ContactSection() {
           </div>
 
           {/* Direct Phone Card */}
-          <div className="glass-panel p-6 rounded-2xl border border-zinc-800/80 hover:border-amber-500/30 transition-all">
+          <div className="glass-panel p-6 rounded-2xl shadow-sm dark:shadow-none hover:border-amber-500/40 transition-all">
             <div className="flex items-center justify-between mb-2">
-              <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider">
+              <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider font-semibold">
                 Direct Telephony / WhatsApp
               </span>
               <button
                 onClick={() => copyToClipboard(contact.phone, 'phone')}
-                className="flex items-center gap-1 text-[11px] font-mono text-amber-400 hover:text-amber-300 transition-colors"
+                className="flex items-center gap-1 text-[11px] font-mono text-amber-700 dark:text-amber-400 hover:text-amber-600 dark:hover:text-amber-300 transition-colors font-medium"
               >
                 {copiedField === 'phone' ? (
                   <>
-                    <Check className="w-3.5 h-3.5 text-emerald-400" />
-                    <span className="text-emerald-400">Copied!</span>
+                    <Check className="w-3.5 h-3.5 text-emerald-500" />
+                    <span className="text-emerald-600 dark:text-emerald-400 font-semibold">Copied!</span>
                   </>
                 ) : (
                   <>
@@ -115,9 +115,9 @@ export default function ContactSection() {
             </div>
             <a
               href={`tel:${contact.phone.replace(/\s+/g, '')}`}
-              className="flex items-center gap-3 text-zinc-100 hover:text-amber-300 transition-colors group"
+              className="flex items-center gap-3 text-zinc-900 dark:text-zinc-100 hover:text-amber-700 dark:hover:text-amber-300 transition-colors group"
             >
-              <div className="w-9 h-9 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 group-hover:scale-105 transition-transform">
+              <div className="w-9 h-9 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-600 dark:text-amber-400 group-hover:scale-105 transition-transform">
                 <Phone className="w-4 h-4" />
               </div>
               <span className="font-mono text-sm sm:text-base font-medium">
@@ -132,12 +132,12 @@ export default function ContactSection() {
               href={contact.linkedin}
               target="_blank"
               rel="noreferrer"
-              className="glass-panel p-4 rounded-xl border border-zinc-800/80 hover:border-amber-500/40 flex items-center gap-3 text-zinc-300 hover:text-white transition-all group"
+              className="glass-panel p-4 rounded-xl flex items-center gap-3 text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white transition-all group shadow-sm dark:shadow-none"
             >
-              <Linkedin className="w-5 h-5 text-amber-400 group-hover:scale-110 transition-transform" />
+              <Linkedin className="w-5 h-5 text-amber-600 dark:text-amber-400 group-hover:scale-110 transition-transform" />
               <div>
-                <div className="font-mono text-[10px] text-zinc-500 uppercase">Connect</div>
-                <div className="font-semibold text-xs">LinkedIn</div>
+                <div className="font-mono text-[10px] text-zinc-500 uppercase font-semibold">Connect</div>
+                <div className="font-semibold text-xs text-zinc-900 dark:text-zinc-100">LinkedIn</div>
               </div>
             </a>
 
@@ -145,20 +145,20 @@ export default function ContactSection() {
               href={contact.github}
               target="_blank"
               rel="noreferrer"
-              className="glass-panel p-4 rounded-xl border border-zinc-800/80 hover:border-amber-500/40 flex items-center gap-3 text-zinc-300 hover:text-white transition-all group"
+              className="glass-panel p-4 rounded-xl flex items-center gap-3 text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white transition-all group shadow-sm dark:shadow-none"
             >
-              <Github className="w-5 h-5 text-amber-400 group-hover:scale-110 transition-transform" />
+              <Github className="w-5 h-5 text-amber-600 dark:text-amber-400 group-hover:scale-110 transition-transform" />
               <div>
-                <div className="font-mono text-[10px] text-zinc-500 uppercase">Repositories</div>
-                <div className="font-semibold text-xs">GitHub</div>
+                <div className="font-mono text-[10px] text-zinc-500 uppercase font-semibold">Repositories</div>
+                <div className="font-semibold text-xs text-zinc-900 dark:text-zinc-100">GitHub</div>
               </div>
             </a>
           </div>
 
-          {/* Location & Institution info */}
-          <div className="p-4 rounded-xl bg-zinc-950/60 border border-zinc-900 flex items-center gap-3 text-xs text-zinc-400 font-mono">
-            <MapPin className="w-4 h-4 text-amber-400 shrink-0" />
-            <span>Sri Eshwar College of Engineering &bull; Coimbatore, Tamil Nadu, India</span>
+          {/* Institution info */}
+          <div className="p-4 rounded-xl bg-white/70 dark:bg-zinc-950/60 border border-zinc-200 dark:border-zinc-900 flex items-center gap-3 text-xs text-zinc-600 dark:text-zinc-400 font-mono shadow-sm dark:shadow-none">
+            <MapPin className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0" />
+            <span>Sri Eshwar College of Engineering &bull; Tamil Nadu, India</span>
           </div>
         </div>
 
@@ -166,11 +166,11 @@ export default function ContactSection() {
         <div className="lg:col-span-7">
           <form
             onSubmit={handleSubmit}
-            className="glass-panel p-6 sm:p-8 rounded-2xl border border-amber-500/20 shadow-2xl space-y-4"
+            className="glass-panel p-6 sm:p-8 rounded-2xl shadow-xl space-y-4"
           >
-            <div className="flex items-center justify-between pb-3 border-b border-zinc-800/80 mb-2">
-              <span className="font-mono text-xs text-amber-400 font-semibold uppercase tracking-wider flex items-center gap-2">
-                <Sparkles className="w-3.5 h-3.5" />
+            <div className="flex items-center justify-between pb-3 border-b border-zinc-200 dark:border-zinc-800/80 mb-2">
+              <span className="font-mono text-xs text-amber-700 dark:text-amber-400 font-semibold uppercase tracking-wider flex items-center gap-2">
+                <Sparkles className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
                 <span>Transmit Secure Dispatch</span>
               </span>
               <span className="font-mono text-[10px] text-zinc-500">ENCRYPTED PROTOCOL</span>
@@ -178,7 +178,7 @@ export default function ContactSection() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-[10px] font-mono uppercase tracking-wider text-zinc-400 mb-1.5">
+                <label className="block text-[10px] font-mono uppercase tracking-wider text-zinc-600 dark:text-zinc-400 mb-1.5 font-semibold">
                   Your Full Name
                 </label>
                 <input
@@ -187,12 +187,12 @@ export default function ContactSection() {
                   placeholder="e.g. Dr. Alan Turing"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl bg-zinc-950/80 border border-zinc-800 text-xs text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-amber-500/60 transition-colors"
+                  className="w-full px-4 py-3 rounded-xl bg-white dark:bg-zinc-950/80 border border-zinc-200 dark:border-zinc-800 text-xs text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:outline-none focus:border-amber-500/60 shadow-sm dark:shadow-none transition-colors"
                 />
               </div>
 
               <div>
-                <label className="block text-[10px] font-mono uppercase tracking-wider text-zinc-400 mb-1.5">
+                <label className="block text-[10px] font-mono uppercase tracking-wider text-zinc-600 dark:text-zinc-400 mb-1.5 font-semibold">
                   Your Email Address
                 </label>
                 <input
@@ -201,13 +201,13 @@ export default function ContactSection() {
                   placeholder="e.g. turing@bletchley.org"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl bg-zinc-950/80 border border-zinc-800 text-xs text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-amber-500/60 transition-colors"
+                  className="w-full px-4 py-3 rounded-xl bg-white dark:bg-zinc-950/80 border border-zinc-200 dark:border-zinc-800 text-xs text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:outline-none focus:border-amber-500/60 shadow-sm dark:shadow-none transition-colors"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-[10px] font-mono uppercase tracking-wider text-zinc-400 mb-1.5">
+              <label className="block text-[10px] font-mono uppercase tracking-wider text-zinc-600 dark:text-zinc-400 mb-1.5 font-semibold">
                 Dispatch Subject
               </label>
               <input
@@ -215,12 +215,12 @@ export default function ContactSection() {
                 placeholder="e.g. AI Research Partnership / System Engineering"
                 value={formData.subject}
                 onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl bg-zinc-950/80 border border-zinc-800 text-xs text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-amber-500/60 transition-colors"
+                className="w-full px-4 py-3 rounded-xl bg-white dark:bg-zinc-950/80 border border-zinc-200 dark:border-zinc-800 text-xs text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:outline-none focus:border-amber-500/60 shadow-sm dark:shadow-none transition-colors"
               />
             </div>
 
             <div>
-              <label className="block text-[10px] font-mono uppercase tracking-wider text-zinc-400 mb-1.5">
+              <label className="block text-[10px] font-mono uppercase tracking-wider text-zinc-600 dark:text-zinc-400 mb-1.5 font-semibold">
                 Message Content
               </label>
               <textarea
@@ -229,7 +229,7 @@ export default function ContactSection() {
                 placeholder="Describe your project, timeline, or collaboration proposal..."
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl bg-zinc-950/80 border border-zinc-800 text-xs text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-amber-500/60 transition-colors resize-none"
+                className="w-full px-4 py-3 rounded-xl bg-white dark:bg-zinc-950/80 border border-zinc-200 dark:border-zinc-800 text-xs text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:outline-none focus:border-amber-500/60 shadow-sm dark:shadow-none transition-colors resize-none"
               />
             </div>
 
@@ -238,13 +238,13 @@ export default function ContactSection() {
               disabled={isSent}
               className={`w-full py-3.5 px-6 rounded-xl font-mono text-xs uppercase tracking-wider font-bold transition-all duration-300 flex items-center justify-center gap-2 ${
                 isSent
-                  ? 'bg-emerald-500/20 border border-emerald-500/50 text-emerald-300'
-                  : 'bg-gradient-to-r from-amber-500 to-amber-600 text-zinc-950 hover:brightness-110 shadow-[0_0_20px_rgba(245,158,11,0.3)]'
+                  ? 'bg-emerald-500/20 border border-emerald-500/50 text-emerald-700 dark:text-emerald-300'
+                  : 'bg-gradient-to-r from-amber-500 to-amber-600 text-zinc-950 hover:brightness-110 shadow-md hover:shadow-lg'
               }`}
             >
               {isSent ? (
                 <>
-                  <Check className="w-4 h-4 text-emerald-400" />
+                  <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                   <span>Dispatch Transmitted Successfully!</span>
                 </>
               ) : (
@@ -260,4 +260,3 @@ export default function ContactSection() {
     </section>
   );
 }
-

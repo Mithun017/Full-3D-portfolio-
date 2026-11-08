@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Briefcase, Calendar, CheckCircle2, ChevronRight, Terminal, Layers } from 'lucide-react';
+import { Calendar, CheckCircle2, Layers } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 export default function ExperienceSection() {
@@ -12,16 +12,16 @@ export default function ExperienceSection() {
     <section id="experience" className="relative py-28 px-4 sm:px-6 lg:px-8 z-10 max-w-7xl mx-auto">
       {/* Section Header */}
       <div className="flex items-center gap-4 mb-4">
-        <span className="font-mono text-xs text-amber-400 tracking-widest uppercase">02 // TRAJECTORY</span>
-        <div className="h-px flex-1 bg-gradient-to-r from-amber-500/30 to-transparent"></div>
+        <span className="font-mono text-xs text-amber-700 dark:text-amber-400 tracking-widest uppercase">02 // TRAJECTORY</span>
+        <div className="h-px flex-1 bg-gradient-to-r from-amber-500/40 dark:from-amber-500/30 to-transparent"></div>
       </div>
 
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
         <div>
-          <h2 className="font-display font-black text-3xl sm:text-5xl text-white uppercase tracking-tight">
+          <h2 className="font-display font-black text-3xl sm:text-5xl text-zinc-900 dark:text-white uppercase tracking-tight">
             Production <span className="text-gold-gradient">Experience</span>
           </h2>
-          <p className="font-mono text-xs text-zinc-400 mt-2 uppercase tracking-wider">
+          <p className="font-mono text-xs text-zinc-600 dark:text-zinc-400 mt-2 uppercase tracking-wider">
             Industrial engineering internships & technical consulting
           </p>
         </div>
@@ -39,26 +39,26 @@ export default function ExperienceSection() {
                 onClick={() => setSelectedExp(exp.id)}
                 className={`w-full text-left p-5 rounded-2xl border transition-all duration-300 relative overflow-hidden ${
                   isSelected
-                    ? 'bg-zinc-900/90 border-amber-500/50 shadow-[0_0_25px_rgba(245,158,11,0.15)] translate-x-2'
-                    : 'bg-zinc-950/40 border-zinc-800/80 hover:border-zinc-700 hover:bg-zinc-900/40'
+                    ? 'bg-white dark:bg-zinc-900/90 border-amber-500/60 shadow-lg dark:shadow-[0_0_25px_rgba(245,158,11,0.15)] translate-x-1 sm:translate-x-2'
+                    : 'bg-white/60 dark:bg-zinc-950/40 border-zinc-200 dark:border-zinc-800/80 hover:border-zinc-300 dark:hover:border-zinc-700 hover:bg-white/90 dark:hover:bg-zinc-900/40 shadow-sm dark:shadow-none'
                 }`}
               >
                 {isSelected && (
-                  <div className="absolute top-0 left-0 bottom-0 w-1 bg-gradient-to-b from-amber-400 to-amber-600"></div>
+                  <div className="absolute top-0 left-0 bottom-0 w-1.5 bg-gradient-to-b from-amber-500 to-amber-700"></div>
                 )}
                 <div className="flex items-center justify-between mb-2">
-                  <span className="font-mono text-[10px] text-amber-400 font-semibold px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/20">
+                  <span className="font-mono text-[10px] text-amber-700 dark:text-amber-400 font-semibold px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/20">
                     {exp.badge}
                   </span>
-                  <span className="font-mono text-xs text-zinc-400 flex items-center gap-1.5">
-                    <Calendar className="w-3.5 h-3.5 text-zinc-500" />
+                  <span className="font-mono text-xs text-zinc-500 dark:text-zinc-400 flex items-center gap-1.5">
+                    <Calendar className="w-3.5 h-3.5 text-zinc-400" />
                     {exp.period}
                   </span>
                 </div>
-                <h3 className="font-display font-bold text-base text-zinc-100 group-hover:text-amber-300">
+                <h3 className="font-display font-bold text-base text-zinc-900 dark:text-zinc-100 group-hover:text-amber-600 dark:group-hover:text-amber-300">
                   {exp.company}
                 </h3>
-                <p className="text-xs text-zinc-400 mt-1 line-clamp-1">
+                <p className="text-xs text-zinc-600 dark:text-zinc-400 mt-1 line-clamp-1">
                   {exp.role}
                 </p>
               </button>
@@ -68,46 +68,46 @@ export default function ExperienceSection() {
 
         {/* Detailed Experience View (Right) */}
         <div className="lg:col-span-8">
-          <div className="glass-panel p-6 sm:p-8 rounded-2xl border border-amber-500/20 shadow-2xl relative">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-zinc-800/80 mb-6">
+          <div className="glass-panel p-6 sm:p-8 rounded-2xl shadow-xl relative">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-zinc-200 dark:border-zinc-800/80 mb-6">
               <div>
-                <span className="font-mono text-xs text-amber-400/90 tracking-widest uppercase">
+                <span className="font-mono text-xs text-amber-700 dark:text-amber-400/90 tracking-widest uppercase font-semibold">
                   ROLE BREAKDOWN
                 </span>
-                <h3 className="font-display font-black text-2xl sm:text-3xl text-zinc-100 mt-1">
+                <h3 className="font-display font-black text-2xl sm:text-3xl text-zinc-900 dark:text-zinc-100 mt-1">
                   {active.role}
                 </h3>
                 <div className="flex items-center gap-3 mt-1.5">
-                  <span className="font-semibold text-sm text-amber-300">
+                  <span className="font-semibold text-sm text-amber-700 dark:text-amber-300">
                     @{active.company}
                   </span>
-                  <span className="text-zinc-600">&bull;</span>
-                  <span className="font-mono text-xs text-zinc-400">
+                  <span className="text-zinc-400">&bull;</span>
+                  <span className="font-mono text-xs text-zinc-500 dark:text-zinc-400">
                     {active.period}
                   </span>
                 </div>
               </div>
 
-              <div className="px-3.5 py-1.5 rounded-full bg-zinc-900 border border-zinc-800 text-xs font-mono text-zinc-400 self-start sm:self-center">
-                Focus: <span className="text-amber-300">{active.focus}</span>
+              <div className="px-3.5 py-1.5 rounded-full bg-white/80 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-xs font-mono text-zinc-600 dark:text-zinc-400 self-start sm:self-center shadow-sm dark:shadow-none">
+                Focus: <span className="text-amber-700 dark:text-amber-300 font-semibold">{active.focus}</span>
               </div>
             </div>
 
             {/* Narrative Description */}
-            <p className="text-sm text-zinc-300 font-light leading-relaxed mb-6">
+            <p className="text-sm text-zinc-700 dark:text-zinc-300 font-light leading-relaxed mb-6">
               {active.description}
             </p>
 
             {/* Key Deliverables & Achievements */}
-            <h4 className="font-mono text-xs text-amber-400 tracking-wider uppercase mb-4 flex items-center gap-2">
-              <Layers className="w-4 h-4 text-amber-400" />
+            <h4 className="font-mono text-xs text-amber-700 dark:text-amber-400 tracking-wider uppercase mb-4 flex items-center gap-2 font-semibold">
+              <Layers className="w-4 h-4 text-amber-600 dark:text-amber-400" />
               <span>Key Technical Deliverables</span>
             </h4>
             <div className="space-y-3 mb-8">
               {active.achievements.map((item, idx) => (
                 <div key={idx} className="flex items-start gap-3">
-                  <CheckCircle2 className="w-4 h-4 text-amber-400/80 shrink-0 mt-0.5" />
-                  <span className="text-xs sm:text-sm text-zinc-300 font-light leading-relaxed">
+                  <CheckCircle2 className="w-4 h-4 text-amber-600 dark:text-amber-400/80 shrink-0 mt-0.5" />
+                  <span className="text-xs sm:text-sm text-zinc-700 dark:text-zinc-300 font-light leading-relaxed">
                     {item}
                   </span>
                 </div>
@@ -115,15 +115,15 @@ export default function ExperienceSection() {
             </div>
 
             {/* Technologies Applied */}
-            <div className="pt-6 border-t border-zinc-800/80">
-              <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider block mb-3">
+            <div className="pt-6 border-t border-zinc-200 dark:border-zinc-800/80">
+              <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider block mb-3 font-semibold">
                 Technologies & Architecture
               </span>
               <div className="flex flex-wrap gap-2">
                 {active.technologies.map((tech, i) => (
                   <span
                     key={i}
-                    className="px-3 py-1 rounded-md text-xs font-mono bg-zinc-950/80 border border-zinc-800 text-zinc-300"
+                    className="px-3 py-1 rounded-md text-xs font-mono bg-white dark:bg-zinc-950/80 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-zinc-300 shadow-sm dark:shadow-none"
                   >
                     {tech}
                   </span>
@@ -136,4 +136,3 @@ export default function ExperienceSection() {
     </section>
   );
 }
-
