@@ -7,11 +7,6 @@ export default function Hero({ onOpenTerminal }) {
 
   return (
     <section className="relative min-h-screen flex flex-col justify-center items-center text-center px-4 sm:px-6 lg:px-8 pt-28 pb-16 z-10">
-      {/* Decorative Celestial Label */}
-      <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-600/30 dark:border-amber-500/30 text-amber-700 dark:text-amber-300 text-xs font-mono tracking-widest uppercase mb-8 shadow-sm dark:shadow-[0_0_20px_rgba(245,158,11,0.15)] animate-pulse-slow">
-        <span className="w-2 h-2 rounded-full bg-amber-500"></span>
-        <span>CELESTIAL SYSTEM ONLINE // AI & DATA SCIENCE</span>
-      </div>
 
       {/* Main Title / Editorial Display */}
       <h1 className="font-display font-black text-5xl sm:text-7xl lg:text-9xl tracking-tight mb-6 uppercase select-none">
