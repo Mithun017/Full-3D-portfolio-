@@ -9,7 +9,7 @@ export default function Hero({ onOpenTerminal }) {
     <section className="relative min-h-screen flex flex-col justify-center items-center text-center px-4 sm:px-6 lg:px-8 pt-28 pb-16 z-10">
 
       {/* Main Title / Editorial Display */}
-      <h1 className="font-display font-black text-5xl sm:text-7xl lg:text-9xl tracking-tight mb-6 uppercase select-none">
+      <h1 className="font-display font-black text-4xl sm:text-7xl lg:text-9xl tracking-tight mb-6 uppercase select-none">
         <span className="text-gold-gradient block drop-shadow-[0_10px_35px_rgba(245,158,11,0.25)]">
           {profile.name}
         </span>

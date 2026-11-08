@@ -256,7 +256,7 @@ export default function TerminalModal({ isOpen, onClose }) {
             }
             if (line.type === 'neofetch') {
               return (
-                <div key={idx} className="text-amber-300 whitespace-pre font-bold leading-tight">
+                <div key={idx} className="text-amber-300 whitespace-pre overflow-x-auto text-[9px] sm:text-xs font-bold leading-tight scrollbar-none py-1">
                   {line.text}
                 </div>
               );

@@ -10,11 +10,17 @@ import SkillsMatrix from './components/SkillsMatrix';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import TerminalModal from './components/TerminalModal';
+import AstronautScrollPuller from './components/AstronautScrollPuller';
 
 export default function App() {
   const [terminalOpen, setTerminalOpen] = useState(false);
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('mithun-theme') || 'dark';
+    // Dark theme is always the default when someone opens the application
+    try {
+      localStorage.removeItem('mithun-theme');
+    } catch {}
+    const sessionTheme = sessionStorage.getItem('mithun-theme');
+    return sessionTheme === 'light' ? 'light' : 'dark';
   });
 
   useEffect(() => {
@@ -26,7 +32,7 @@ export default function App() {
       root.classList.remove('dark');
       root.classList.add('light');
     }
-    localStorage.setItem('mithun-theme', theme);
+    sessionStorage.setItem('mithun-theme', theme);
   }, [theme]);
 
   const toggleTheme = () => {
@@ -60,6 +66,9 @@ export default function App() {
 
       {/* Editorial Footer */}
       <Footer />
+
+      {/* Celestial Astronaut Scroll Curtain Puller */}
+      <AstronautScrollPuller theme={theme} />
 
       {/* Interactive Ubuntu Terminal System */}
       <TerminalModal

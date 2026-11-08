@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Terminal, Github, Linkedin, Menu, X, Sun, Moon } from 'lucide-react';
+import { Terminal, Github, Linkedin, Menu, X } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 export default function Navbar({ onOpenTerminal, theme, onToggleTheme }) {
@@ -67,24 +67,74 @@ export default function Navbar({ onOpenTerminal, theme, onToggleTheme }) {
 
         {/* Right Action Utilities */}
         <div className="hidden lg:flex items-center gap-3">
-          {/* Theme Toggle Button */}
+          {/* 3D Glowing Celestial Single-Orb Theme Toggle */}
           <button
             onClick={onToggleTheme}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono transition-all duration-300 border bg-white/80 dark:bg-zinc-900/60 border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:text-amber-600 dark:hover:text-amber-300 hover:border-amber-500/40 shadow-sm dark:shadow-none"
-            title={theme === 'dark' ? 'Switch to Radiant Light Theme' : 'Switch to Cosmic Dark Theme'}
-            aria-label="Toggle Theme"
+            className="relative w-10 h-10 rounded-full p-0 flex items-center justify-center cursor-pointer select-none transition-all duration-500 group focus:outline-none mr-3.5"
+            title={theme === 'dark' ? 'Cosmic Cold Moon (Dark) • Click for Fiery Sun (Light)' : 'Fiery Golden Sun (Light) • Click for Cold Moon (Dark)'}
+            aria-label="Toggle Celestial Theme"
           >
-            {theme === 'dark' ? (
-              <>
-                <Sun className="w-3.5 h-3.5 text-amber-400" />
-                <span className="font-semibold text-[11px]">LIGHT</span>
-              </>
-            ) : (
-              <>
-                <Moon className="w-3.5 h-3.5 text-amber-600" />
-                <span className="font-semibold text-[11px]">DARK</span>
-              </>
-            )}
+            {/* Outer Atmospheric Corona Halo Glow */}
+            <div
+              className={`absolute -inset-1.5 rounded-full transition-all duration-700 blur-md pointer-events-none ${
+                theme === 'dark'
+                  ? 'bg-gradient-to-r from-blue-500/50 via-cyan-400/40 to-blue-600/50 opacity-90 group-hover:opacity-100 group-hover:scale-110'
+                  : 'bg-gradient-to-r from-amber-500/60 via-yellow-400/50 to-orange-500/60 opacity-95 group-hover:opacity-100 group-hover:scale-110'
+              }`}
+            />
+
+            {/* 3D Celestial Body Sphere */}
+            <div
+              className={`relative w-full h-full rounded-full overflow-hidden transition-all duration-700 transform group-hover:scale-105 ${
+                theme === 'dark'
+                  ? 'shadow-[0_0_15px_rgba(96,165,250,0.85),0_0_30px_rgba(59,130,246,0.55),0_0_45px_rgba(37,99,235,0.35)] ring-2 ring-blue-300/60'
+                  : 'shadow-[0_0_16px_rgba(251,191,36,0.95),0_0_32px_rgba(245,158,11,0.75),0_0_50px_rgba(234,88,12,0.5)] ring-2 ring-amber-300/70'
+              }`}
+            >
+              {/* Moon Texture (Dark Mode) */}
+              <img
+                src="/assets/celestial-moon.png"
+                alt="Cold Moon"
+                className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ${
+                  theme === 'dark'
+                    ? 'opacity-100 scale-100 rotate-0'
+                    : 'opacity-0 scale-75 -rotate-90 pointer-events-none'
+                }`}
+              />
+
+              {/* Sun Texture (Light Mode) */}
+              <img
+                src="/assets/celestial-sun.png"
+                alt="Fiery Sun"
+                className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ${
+                  theme === 'light'
+                    ? 'opacity-100 scale-100 rotate-0'
+                    : 'opacity-0 scale-75 rotate-90 pointer-events-none'
+                }`}
+              />
+
+              {/* 3D Convex Sphere Lighting Overlay (Photorealistic 3D Depth) */}
+              <div
+                className="absolute inset-0 rounded-full pointer-events-none mix-blend-overlay transition-opacity duration-500"
+                style={{
+                  background: 'radial-gradient(circle at 32% 28%, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0.2) 35%, rgba(0,0,0,0.7) 100%)',
+                }}
+              />
+
+              {/* 3D Specular Light Glint on Sphere Apex */}
+              <div
+                className="absolute top-1 left-1.5 w-3.5 h-2.5 rounded-full pointer-events-none opacity-80"
+                style={{
+                  background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0) 75%)',
+                  transform: 'rotate(-25deg)',
+                }}
+              />
+
+              {/* 3D Ambient Limb Shadow */}
+              <div
+                className="absolute inset-0 rounded-full pointer-events-none shadow-[inset_-3px_-3px_8px_rgba(0,0,0,0.8),inset_2px_2px_4px_rgba(255,255,255,0.4)]"
+              />
+            </div>
           </button>
 
           {/* Terminal Trigger */}
@@ -122,12 +172,51 @@ export default function Navbar({ onOpenTerminal, theme, onToggleTheme }) {
 
         {/* Mobile menu trigger */}
         <div className="flex items-center gap-2 md:hidden">
+          {/* Mobile 3D Glowing Celestial Single-Orb Toggle */}
           <button
             onClick={onToggleTheme}
-            className="p-2 rounded-lg bg-white/80 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300"
-            title="Toggle Light/Dark Theme"
+            className="relative w-9 h-9 rounded-full p-0 flex items-center justify-center cursor-pointer select-none transition-all duration-500 focus:outline-none"
+            title="Toggle Celestial Theme"
+            aria-label="Toggle Celestial Theme"
           >
-            {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-amber-600" />}
+            {/* Outer Corona Glow */}
+            <div
+              className={`absolute -inset-1 rounded-full transition-all duration-500 blur-sm pointer-events-none ${
+                theme === 'dark'
+                  ? 'bg-blue-500/50 opacity-90'
+                  : 'bg-amber-500/60 opacity-90'
+              }`}
+            />
+            {/* 3D Celestial Body Sphere */}
+            <div
+              className={`relative w-full h-full rounded-full overflow-hidden transition-all duration-500 ${
+                theme === 'dark'
+                  ? 'shadow-[0_0_12px_rgba(96,165,250,0.8),0_0_24px_rgba(59,130,246,0.5)] ring-2 ring-blue-300/60'
+                  : 'shadow-[0_0_14px_rgba(251,191,36,0.9),0_0_26px_rgba(245,158,11,0.6)] ring-2 ring-amber-300/70'
+              }`}
+            >
+              <img
+                src="/assets/celestial-moon.png"
+                alt="Cold Moon"
+                className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 ${
+                  theme === 'dark' ? 'opacity-100 scale-100' : 'opacity-0 scale-75 pointer-events-none'
+                }`}
+              />
+              <img
+                src="/assets/celestial-sun.png"
+                alt="Fiery Sun"
+                className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 ${
+                  theme === 'light' ? 'opacity-100 scale-100' : 'opacity-0 scale-75 pointer-events-none'
+                }`}
+              />
+              {/* 3D Convex Overlay */}
+              <div
+                className="absolute inset-0 rounded-full pointer-events-none mix-blend-overlay"
+                style={{
+                  background: 'radial-gradient(circle at 32% 28%, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.2) 35%, rgba(0,0,0,0.7) 100%)',
+                }}
+              />
+            </div>
           </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
