@@ -36,6 +36,9 @@ lerna-debug.log*
 .DS_Store
 Thumbs.db
 
+# Documentation & Source Files
+Doc/
+
 # Scratch and Temporary files
 .system_generated/
 *.tmp

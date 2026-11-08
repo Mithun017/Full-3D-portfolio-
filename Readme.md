@@ -167,13 +167,9 @@ The portfolio showcases all **15 real projects** documented in `Doc/Context.txt`
 
 ---
 
-## 🔗 Official Repository & Connect
+## 🔗 Official Repository
 
 - **GitHub Repository**: [https://github.com/Mithun017/Full-3D-portfolio-.git](https://github.com/Mithun017/Full-3D-portfolio-.git)
-- **Email**: [mmithun1701@gmail.com](mailto:mmithun1701@gmail.com)
-- **Phone**: +91 93611 23237
-- **LinkedIn**: [https://www.linkedin.com/in/m-mithun-85787628b/](https://www.linkedin.com/in/m-mithun-85787628b/)
-- **GitHub Profile**: [https://github.com/mithun017/](https://github.com/mithun017/)
 
 ---
 

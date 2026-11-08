@@ -139,9 +139,7 @@ Code/
 
 ---
 
-## 🔗 Repository & Contact
+## 🔗 Official Repository
 
 - **Repository**: [https://github.com/Mithun017/Full-3D-portfolio-.git](https://github.com/Mithun017/Full-3D-portfolio-.git)
-- **Email**: [mmithun1701@gmail.com](mailto:mmithun1701@gmail.com)
-- **LinkedIn**: [https://www.linkedin.com/in/m-mithun-85787628b/](https://www.linkedin.com/in/m-mithun-85787628b/)
-- **GitHub**: [https://github.com/mithun017/](https://github.com/mithun017/)
+
