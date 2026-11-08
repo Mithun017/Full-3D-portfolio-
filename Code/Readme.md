@@ -1,10 +1,13 @@
 # ◈ M Mithun — 3D Celestial Portfolio & Cosmic Terminal System (React & JSX)
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-mithun--portfolio--cyan.vercel.app-00dfa2.svg?style=for-the-badge&logo=vercel&logoColor=black)](https://mithun-portfolio-cyan.vercel.app/)
 [![GitHub Repository](https://img.shields.io/badge/GitHub-Full--3D--portfolio--amber.svg?style=for-the-badge&logo=github)](https://github.com/Mithun017/Full-3D-portfolio-)
 [![React 18](https://img.shields.io/badge/React-18.3_JSX-61DAFB.svg?style=for-the-badge&logo=react)](https://react.dev/)
 [![Three.js](https://img.shields.io/badge/Three.js-r160-white.svg?style=for-the-badge&logo=threedotjs)](https://threejs.org/)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC.svg?style=for-the-badge&logo=tailwindcss)](https://tailwindcss.com/)
 [![Vite](https://img.shields.io/badge/Vite-5.4-646CFF.svg?style=for-the-badge&logo=vite)](https://vitejs.dev/)
+
+> 🌐 **Live Website**: [M Mithun — AI & Data Science Engineer | 3D Cosmic Experience](https://mithun-portfolio-cyan.vercel.app/)
 
 An immersive, luxury 3D WebGL developer portfolio and Ubuntu retro terminal system developed with **React.js and JSX** for **M Mithun** — AI & Data Science Undergraduate at Sri Eshwar College of Engineering.
 
@@ -134,7 +137,8 @@ Code/
 
 ---
 
-## 🔗 Official Repository
+## 🔗 Live Website & Official Repository
 
-- **Repository**: [https://github.com/Mithun017/Full-3D-portfolio-.git](https://github.com/Mithun017/Full-3D-portfolio-.git)
+- 🌐 **Live Website**: [M Mithun — AI & Data Science Engineer | 3D Cosmic Experience](https://mithun-portfolio-cyan.vercel.app/)
+- 💻 **Repository**: [https://github.com/Mithun017/Full-3D-portfolio-.git](https://github.com/Mithun017/Full-3D-portfolio-.git)
 

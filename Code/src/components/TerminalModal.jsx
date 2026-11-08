@@ -134,7 +134,7 @@ export default function TerminalModal({ isOpen, onClose }) {
       case 'contact':
         newHistory.push({
           type: 'output',
-          text: `=== COMMUNICATION CHANNELS ===\nEmail:    ${portfolioData.profile.contact.email}\nPhone:    ${portfolioData.profile.contact.phone}\nLinkedIn: ${portfolioData.profile.contact.linkedin}\nGitHub:   ${portfolioData.profile.contact.github}\nRepo:     ${portfolioData.profile.contact.repo}`
+          text: `=== COMMUNICATION CHANNELS ===\nEmail:    ${portfolioData.profile.contact.email}\nPhone:    ${portfolioData.profile.contact.phone}\nLinkedIn: ${portfolioData.profile.contact.linkedin}\nGitHub:   ${portfolioData.profile.contact.github}\nRepo:     ${portfolioData.profile.contact.repo}\nLive:     ${portfolioData.profile.contact.website}`
         });
         break;
 

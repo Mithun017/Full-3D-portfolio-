@@ -49,7 +49,8 @@ export const portfolioData = {
       email: "mmithun1701@gmail.com",
       linkedin: "https://www.linkedin.com/in/m-mithun-85787628b/",
       github: "https://github.com/mithun017/",
-      repo: "https://github.com/Mithun017/Full-3D-portfolio-.git"
+      repo: "https://github.com/Mithun017/Full-3D-portfolio-.git",
+      website: "https://mithun-portfolio-cyan.vercel.app/"
     }
   },
 

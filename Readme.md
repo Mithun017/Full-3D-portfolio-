@@ -1,10 +1,13 @@
 # ◈ M Mithun — 3D Celestial Portfolio & Cosmic Terminal System
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-mithun--portfolio--cyan.vercel.app-00dfa2.svg?style=for-the-badge&logo=vercel&logoColor=black)](https://mithun-portfolio-cyan.vercel.app/)
 [![Repository](https://img.shields.io/badge/GitHub-Repository-amber.svg?style=for-the-badge&logo=github)](https://github.com/Mithun017/Full-3D-portfolio-)
 [![Framework](https://img.shields.io/badge/React-18-61DAFB.svg?style=for-the-badge&logo=react)](https://react.dev/)
 [![Graphics](https://img.shields.io/badge/Three.js-0.160-white.svg?style=for-the-badge&logo=threedotjs)](https://threejs.org/)
 [![Styling](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC.svg?style=for-the-badge&logo=tailwindcss)](https://tailwindcss.com/)
 [![Build](https://img.shields.io/badge/Vite-5.4-646CFF.svg?style=for-the-badge&logo=vite)](https://vitejs.dev/)
+
+> 🌐 **Live Website**: [M Mithun — AI & Data Science Engineer | 3D Cosmic Experience](https://mithun-portfolio-cyan.vercel.app/)
 
 An immersive, high-performance 3D WebGL developer portfolio and Ubuntu retro terminal system designed for **M Mithun** — AI & Data Science Undergraduate at Sri Eshwar College of Engineering, specializing in Generative AI, Large Language Models (LLMs), Agentic AI, Computer Vision, and scalable Machine Learning systems.
 
@@ -165,9 +168,10 @@ The portfolio showcases all **15 real projects** documented in `Doc/Context.txt`
 
 ---
 
-## 🔗 Official Repository
+## 🔗 Live Website & Official Repository
 
-- **GitHub Repository**: [https://github.com/Mithun017/Full-3D-portfolio-.git](https://github.com/Mithun017/Full-3D-portfolio-.git)
+- 🌐 **Live Website**: [M Mithun — AI & Data Science Engineer | 3D Cosmic Experience](https://mithun-portfolio-cyan.vercel.app/)
+- 💻 **GitHub Repository**: [https://github.com/Mithun017/Full-3D-portfolio-.git](https://github.com/Mithun017/Full-3D-portfolio-.git)
 
 ---
 
