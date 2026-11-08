@@ -1,0 +1,100 @@
+# Build My Portfolio Using REA — Casa di Solare Reference
+
+## 1. My Portfolio Folder — Source of Truth
+
+`C:\Users\MITHUN\Desktop\STUDIES\MY INFO\My portfolio\3.Full 3d new\Doc`
+
+First, recursively inspect this entire directory, including subfolders, source code, documents, images, videos, 3D assets, project descriptions, resumes, and other portfolio materials.
+
+Use my actual information from these files. Do not invent projects, achievements, experience, statistics, or credentials.
+
+## 2. Reference Website
+
+**Reference:** https://casadisolare.com/
+
+Study this website carefully and use it as the visual and interaction reference for my portfolio.
+
+## 3. Mandatory Reverse Engineer Anything (REA) Skill
+
+You MUST use my installed `reverse-engineer-anything` skill and its available MCP tools.
+
+Before coding:
+
+1. Read and follow the installed REA skill instructions.
+2. Verify that the REA MCP server is available and identify the tools you can actually call.
+3. Use REA and browser inspection to analyze the reference website.
+4. Document its visual design, page structure, typography, spacing, color palette, transitions, scroll behavior, animations, interactive elements, responsive layout, and 3D/WebGL effects where observable.
+5. Use these findings to plan an original implementation inspired by the reference.
+
+Do not merely claim that you used REA. Actually invoke its tools when available. If the tools are unavailable, explain the problem and attempt a supported alternative without falsely claiming REA analysis was completed.
+
+## 4. Design Direction
+
+Create a premium, immersive, futuristic, interactive portfolio that captures the reference website's level of visual quality and sophistication while showcasing my own identity, projects, and achievements.
+
+The result should feel like a professionally art-directed digital experience, not a generic portfolio template.
+
+Consider:
+- Cinematic full-screen opening section
+- Bold, carefully composed typography
+- Smooth scrolling and scroll-triggered transitions
+- Sophisticated motion design and micro-interactions
+- Immersive 3D or WebGL elements where they add genuine value
+- Elegant project presentations and interactive case studies
+- Premium typography, contrast, spacing, and composition
+- Responsive desktop, tablet, and mobile layouts
+- A cohesive visual system across every section
+
+Use original implementation and assets from my folder wherever appropriate. Do not copy the reference site's proprietary source code, identity, or protected assets.
+
+## 5. My Portfolio Content
+
+Discover my real content from the local folder. Organize it into suitable sections, such as:
+
+- Hero and personal introduction
+- About me
+- Selected projects
+- Technical skills
+- Professional experience and internships
+- Education
+- Certifications and achievements
+- Contact and professional links
+
+Only include sections supported by my actual information. Prioritize the strongest projects and present them with polished descriptions, relevant technologies, and links when available.
+
+## 6. Technology Choices
+
+Inspect my existing project first. Preserve its framework and architecture if they are suitable.
+
+If starting from scratch is genuinely necessary, choose an appropriate modern stack. React, TypeScript, Three.js or React Three Fiber, GSAP, and CSS animations are options, not mandatory requirements.
+
+Prioritize visual quality, maintainability, responsiveness, accessibility, and performance over unnecessary dependencies.
+
+## 7. Implementation Workflow
+
+Work through these stages:
+
+**Stage 1 — Audit:** Inspect the complete portfolio directory and identify the current application, available content, assets, and dependencies.
+
+**Stage 2 — Reverse engineering:** Use REA and browser tools to inspect the reference and record actionable design findings.
+
+**Stage 3 — Planning:** Map my actual content to the new site structure and decide which visual techniques suit each section.
+
+**Stage 4 — Implementation:** Build the functioning website in the workspace. Do not stop at a design description, static mockup, or implementation plan.
+
+**Stage 5 — Validation:** Run the application, inspect it in a browser, test interactions, and fix layout problems, console errors, broken links, missing assets, and responsive issues.
+
+**Stage 6 — Final report:** Summarize what was built, which REA tools were actually used, which features work, and how to run the website locally.
+
+## 8. Safety and Quality Requirements
+
+- Inspect files before modifying them.
+- Preserve useful existing code and content.
+- Do not delete unrelated files or overwrite valuable assets.
+- Do not expose API keys, passwords, tokens, or other secrets.
+- Do not deploy publicly or purchase services without my approval.
+- Respect reduced-motion preferences and provide reasonable accessibility.
+- Avoid unnecessary heavy 3D effects that harm performance.
+- Do not stop after planning; proceed through implementation and testing.
+
+Begin by auditing my local portfolio directory and verifying REA tool availability. Then analyze the reference website and build the complete portfolio based on the findings.

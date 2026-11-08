@@ -1,0 +1,103 @@
+PROJECT EXPERIENCE: MITHUN PORTFOLIO
+======================================
+
+1. PROJECT OVERVIEW
+-------------------
+This project is a high-performance, interactive terminal-based portfolio website built for an AI & Data Scientist. It combines a retro Ubuntu-style terminal interface with modern web technologies to create a unique, developer-centric user experience. The site features a cinematic landing page that transitions into a fully functional command-line interface (CLI) where users can explore projects, skills, and experience using text commands.
+
+2. TECHNOLOGY STACK
+-------------------
+- Framework: Next.js 15 (App Router)
+- Language: TypeScript
+- Styling: Tailwind CSS
+- State Management: Zustand
+- Animations: Framer Motion
+- Deployment: Vercel / GitHub
+
+3. DEVELOPMENT WORKFLOW & STEPS TAKEN
+-------------------------------------
+
+Phase 1: Initialization & Setup
+- Initialized a new Next.js project with TypeScript and Tailwind CSS.
+- Configured the project structure (`src/components`, `src/hooks`, `src/data`).
+- Set up global styles (`globals.css`) to handle terminal fonts and background themes.
+
+Phase 2: Core Terminal Logic (`useTerminal` Hook)
+- Created a custom React hook `useTerminal.ts` to manage the terminal state.
+- Implemented:
+  - Command History: Tracks user inputs and system outputs.
+  - Input Handling: Captures user keystrokes and handles "Enter" to submit.
+  - Command Parsing: Matches inputs against a predefined list of commands (`help`, `about`, `projects`, etc.).
+  - Auto-scrolling: Ensures the terminal always scrolls to the latest output.
+
+Phase 3: File System Simulation (`fileSystem.ts`)
+- Designed a mock file system to store portfolio data.
+- Structured data for:
+  - `about`: Professional bio.
+  - `skills`: Categorized technical skills (Languages, Frameworks, Tools).
+  - `experience`: Work history.
+  - `projects`: Detailed list of 15+ AI/ML projects with IDs and descriptions.
+  - `contact`: Social links and email.
+
+Phase 4: Terminal UI Component (`Terminal.tsx`)
+- Built the visual interface mimicking an Ubuntu terminal.
+- Features:
+  - "Neofetch" style header with ASCII art or profile info.
+  - Command prompt with user@system styling.
+  - Output rendering with support for colors, links, and formatting.
+  - Mobile responsiveness adjustments.
+
+Phase 5: Landing Page & Transitions (`LandingPage.tsx`)
+- Created a cinematic entry point to the site.
+- Implemented:
+  - Large, bold typography for Name and Title.
+  - "Enter System" button with hover effects.
+  - Loading sequence: A progress bar animation ("Initializing System...") that plays before revealing the terminal.
+  - State management via Zustand (`useStore.ts`) to toggle between Landing Page and Terminal views.
+
+Phase 6: Refinements & Polish
+- Theming: Switched to a deep purple/Ubuntu-style color palette.
+- Typography: Used monospaced fonts for the terminal authentic feel.
+- Dynamic Metadata: Updated page title and created a dynamic "M" favicon (`icon.tsx`).
+- Bug Fixes:
+  - Fixed horizontal scrolling issues by adjusting CSS overflow.
+  - Resolved hydration errors by ensuring consistent server/client rendering.
+  - Fixed input focus issues to keep the terminal cursor active.
+
+4. HOW IT WORKS (TECHNICAL DEEP DIVE)
+-------------------------------------
+- State Management: We use `Zustand` to hold global states like `showLandingPage`. This allows the Landing Page to unmount and the Terminal to mount seamlessly without prop drilling.
+- Command Processing: When a user types a command (e.g., `projects`), the `useTerminal` hook looks it up in a switch statement. It retrieves the corresponding data from `fileSystem.ts`, formats it (adding colors or spacing), and pushes a new entry to the `history` array. The UI then renders this `history` array as a list of outputs.
+- Animations: `Framer Motion` handles the smooth fade-ins and slide-ups on the Landing Page and the progress bar animation.
+
+5. ERROR HANDLING & BEST PRACTICES
+----------------------------------
+During development, several key areas require attention to prevent errors:
+
+A. Hydration Mismatches (Next.js specific)
+   - Issue: If the server renders initial HTML that differs from what React renders on the client (e.g., using `window` object before mount), the app crashes.
+   - Fix: Use `useEffect` to ensure code accessing `window` or local storage only runs after the component mounts.
+
+B. Infinite Loops in `useEffect`
+   - Issue: Updating state inside a `useEffect` that depends on that same state causes infinite re-renders.
+   - Fix: Carefully manage dependency arrays `[]`. Only include variables that actually need to trigger a re-run.
+
+C. Z-Index & Stacking Contexts
+   - Issue: The 3D scene or background elements might cover interactive buttons.
+   - Fix: Explicitly set `z-index` (e.g., `z-50` for UI, `z-0` for background) and use `relative`/`absolute` positioning correctly.
+
+D. Mobile Responsiveness
+   - Issue: Terminal text can overflow on small screens.
+   - Fix: Use Tailwind's responsive prefixes (`md:text-xl`, `break-words`, `whitespace-pre-wrap`) to ensure text wraps and scales correctly.
+
+E. Type Safety (TypeScript)
+   - Issue: Passing incorrect data structures to components.
+   - Fix: Define interfaces (e.g., `interface Project { id: string; ... }`) and use them strictly to catch errors at compile time.
+
+6. KEY STEPS FOR FUTURE MAINTENANCE
+-----------------------------------
+1. Adding Projects: Open `src/data/fileSystem.ts` and add a new object to the `projects` array. The terminal will automatically list it.
+2. Changing Theme: Update colors in `src/app/globals.css` or the Tailwind classes in `Terminal.tsx`.
+3. Deployment: Push changes to GitHub. Vercel (if connected) will auto-deploy. Run `npm run build` locally to catch errors before pushing.
+
+This project stands as a robust, scalable, and visually engaging portfolio that effectively showcases technical prowess through its very medium.
