@@ -20,11 +20,13 @@ export default function AstronautScrollPuller({ theme = 'dark' }) {
   // Direct DOM refs for 60/120 FPS hardware acceleration (zero React re-renders during scroll)
   const gearGroupRef = useRef(null);
   const gearTeethRef = useRef(null);
+  const bottomGearGroupRef = useRef(null);
+  const bottomGearTeethRef = useRef(null);
+  const bottomMountRef = useRef(null);
   const chainFrontRef = useRef(null);
   const chainSideRef = useRef(null);
   const chainHiRef = useRef(null);
   const chainShadowRef = useRef(null);
-  const baseSpoolRef = useRef(null);
   const astroBodyRef = useRef(null);
   const armLRef = useRef(null);
   const armRRef = useRef(null);
@@ -60,6 +62,9 @@ export default function AstronautScrollPuller({ theme = 'dark' }) {
     gearD += 'Z';
     if (gearTeethRef.current) {
       gearTeethRef.current.setAttribute('d', gearD);
+    }
+    if (bottomGearTeethRef.current) {
+      bottomGearTeethRef.current.setAttribute('d', gearD);
     }
 
     // 2. SCROLL & PHYSICS STATE
@@ -109,23 +114,29 @@ export default function AstronautScrollPuller({ theme = 'dark' }) {
 
     const animate = (now) => {
       const winH = window.innerHeight;
-      const topY = 54; // Bottom rim of gear teeth where chain drops
-      const botY = winH - 14; // Bottom anchor spool position
-      const astroY = winH - 130; // Astronaut vertical floating height
+      const topY = 54; // Bottom rim of top gear teeth where chain drops
+      const botGearCenterY = winH - 34; // Center of matching bottom gear sprocket
+      const botY = botGearCenterY - 22; // Top rim of bottom gear teeth where chain enters
+      const astroY = winH - 142; // Astronaut vertical floating height
 
-      // Continuously rotate gear with smooth momentum physics
+      // Continuously rotate top gear with smooth momentum physics
       wheelAngle += (targetWheelAngle - wheelAngle) * 0.18;
       if (gearGroupRef.current) {
         gearGroupRef.current.setAttribute('transform', `translate(68, 32) rotate(${wheelAngle.toFixed(2)})`);
       }
 
+      // Rotate bottom gear in sync with top gear and chain
+      if (bottomGearGroupRef.current) {
+        bottomGearGroupRef.current.setAttribute('transform', `translate(68, ${botGearCenterY}) rotate(${wheelAngle.toFixed(2)})`);
+      }
+
+      // Dynamic bottom mounting assembly position
+      if (bottomMountRef.current) {
+        bottomMountRef.current.setAttribute('transform', `translate(0, ${winH - 34})`);
+      }
+
       // Smoothly glide chain offset
       chainOffset += (targetChainOffset - chainOffset) * 0.14;
-
-      // Dynamic bottom spool anchor
-      if (baseSpoolRef.current) {
-        baseSpoolRef.current.setAttribute('transform', `translate(68, ${botY})`);
-      }
 
       // Soft, realistic string physics (gentle air drift)
       const t = now * 0.0013;
@@ -456,14 +467,51 @@ export default function AstronautScrollPuller({ theme = 'dark' }) {
           />
 
           {/* ======================================================== */}
-          {/* 3. SLEEK BOTTOM TENSION SPOOL (Chain terminates at bottom)*/}
+          {/* 3. BOTTOM BASE GEAR SPROCKET ASSEMBLY (Matching the Top)  */}
           {/* ======================================================== */}
-          <g ref={baseSpoolRef} transform="translate(68, 800)">
-            {/* Minimal counterweight spool bracket */}
-            <circle cx="0" cy="0" r="7" fill={packFill} stroke={goldPrimary} strokeWidth="1.6" filter="url(#chainGlowFilter)" />
-            <circle cx="0" cy="0" r="4" fill={goldSecondary} />
-            <circle cx="0" cy="0" r="1.5" fill="#ffffff" />
-            <line x1="-12" y1="8" x2="12" y2="8" stroke={goldPrimary} strokeWidth="1.8" strokeLinecap="round" />
+          {/* Floor Horizontal Mounting Plate and Upright Brackets */}
+          <g ref={bottomMountRef} transform="translate(0, 800)">
+            {/* Floor Horizontal Mounting Plate */}
+            <rect
+              x="36"
+              y="27"
+              width="64"
+              height="7"
+              rx="3.5"
+              fill={goldSecondary}
+              stroke={goldPrimary}
+              strokeWidth="1.2"
+            />
+            {/* Mounting Rivets / Screws */}
+            <circle cx="44" cy="30.5" r="1.5" fill="#ffffff" />
+            <circle cx="92" cy="30.5" r="1.5" fill="#ffffff" />
+
+            {/* Industrial Upright Floor Brackets */}
+            <path d="M 54 27 L 54 0 L 60 0 L 60 27 Z" fill={packFill} stroke={goldPrimary} strokeWidth="1.2" />
+            <path d="M 82 27 L 82 0 L 76 0 L 76 27 Z" fill={packFill} stroke={goldPrimary} strokeWidth="1.2" />
+          </g>
+
+          {/* Large Bottom Cogwheel Gear with Teeth (Rotates in sync on scroll) */}
+          <g ref={bottomGearGroupRef} transform="translate(68, 800)">
+            {/* Outer Gear Teeth Contour */}
+            <path
+              ref={bottomGearTeethRef}
+              fill={packFill}
+              stroke={goldPrimary}
+              strokeWidth="2.4"
+              strokeLinejoin="round"
+              filter="url(#chainGlowFilter)"
+            />
+            {/* Inner Gear Hub Rim */}
+            <circle cx="0" cy="0" r="11" fill={goldSecondary} stroke={goldPrimary} strokeWidth="1.6" />
+            {/* Central Axle Pin & Nut */}
+            <circle cx="0" cy="0" r="5" fill="#fef08a" stroke={goldSecondary} strokeWidth="1.2" />
+            <circle cx="0" cy="0" r="1.8" fill="#141024" />
+            {/* 4 Mechanical Spoke Cutouts */}
+            <circle cx="-6.5" cy="0" r="2.2" fill={packFill} />
+            <circle cx="6.5" cy="0" r="2.2" fill={packFill} />
+            <circle cx="0" cy="-6.5" r="2.2" fill={packFill} />
+            <circle cx="0" cy="6.5" r="2.2" fill={packFill} />
           </g>
 
           {/* ======================================================== */}
