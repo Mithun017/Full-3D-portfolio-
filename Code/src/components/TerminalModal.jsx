@@ -2,6 +2,35 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Terminal as TerminalIcon, X, Maximize2, Minimize2, CornerDownLeft, Sparkles } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
+const NEOFETCH_TEXT = [
+  "  ███╗   ███╗██╗████████╗██╗  ██╗██╗   ██╗███╗   ██╗",
+  "  ████╗ ████║██║╚══██╔══╝██║  ██║██║   ██║████╗  ██║",
+  "  ██╔████╔██║██║   ██║   ███████║██║   ██║██╔██╗ ██║",
+  "  ██║╚██╔╝██║██║   ██║   ██╔══██║██║   ██║██║╚██╗██║",
+  "  ██║ ╚═╝ ██║██║   ██║   ██║  ██║╚██████╔╝██║ ╚████║",
+  "  ╚═╝     ╚═╝╚═╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝",
+  "--------------------------------------------------",
+  "OS: Ubuntu Cosmic 24.04 LTS (x86_64)",
+  "Host: Sri Eshwar AI Compute Node",
+  "Kernel: 6.8.0-mithun-ai",
+  "Uptime: 35+ Projects, 30+ Certs, 2 Internships",
+  "Shell: zsh 5.9 (x86_64-ubuntu)",
+  "Role: AI & Data Science Undergraduate",
+  "Focus: Generative AI, LLMs, Agents, Digital Twins",
+  "Status: Available for High-Impact Engagements"
+].join('\n');
+
+const getInitialHistory = () => [
+  { type: 'system', text: 'Connecting to MITHUN-OS v2.4 (x86_64-pc-linux-gnu)...' },
+  { type: 'system', text: 'Session authenticated: mithun@cosmic-node-01' },
+  { type: 'input', text: 'mithun@universe:~$ neofetch' },
+  { type: 'neofetch', text: NEOFETCH_TEXT },
+  {
+    type: 'welcome',
+    text: "Type 'help' or click the command buttons above to explore projects, skills, experience, and contact."
+  }
+];
+
 export default function TerminalModal({ isOpen, onClose }) {
   const [input, setInput] = useState('');
   const [history, setHistory] = useState([]);
@@ -12,11 +41,7 @@ export default function TerminalModal({ isOpen, onClose }) {
   useEffect(() => {
     if (isOpen) {
       if (history.length === 0) {
-        setHistory([
-          { type: 'system', text: 'Connecting to MITHUN-OS v2.4 (x86_64-pc-linux-gnu)...' },
-          { type: 'system', text: 'Session authenticated: mithun@cosmic-node-01' },
-          ...portfolioData.terminalFileSystem.welcome.map((w) => ({ type: 'welcome', text: w })),
-        ]);
+        setHistory(getInitialHistory());
       }
       setTimeout(() => inputRef.current?.focus(), 150);
     }
@@ -32,37 +57,31 @@ export default function TerminalModal({ isOpen, onClose }) {
     const cmd = rawCmd.trim();
     if (!cmd) return;
 
-    const newHistory = [...history, { type: 'input', text: `mithun@universe:~$ ${cmd}` }];
     const parts = cmd.toLowerCase().split(' ');
     const mainCmd = parts[0];
 
+    // When clear is given, reset directly to the default neofetch display
+    if (mainCmd === 'clear') {
+      setHistory(getInitialHistory());
+      setInput('');
+      return;
+    }
+
+    const newHistory = [...history, { type: 'input', text: `mithun@universe:~$ ${cmd}` }];
+
     switch (mainCmd) {
       case 'help':
-        portfolioData.terminalFileSystem.commands.help.forEach((line) => {
-          newHistory.push({ type: 'output', text: line });
-        });
+        portfolioData.terminalFileSystem.commands.help
+          .filter((line) => !line.includes('neofetch')) // remove neofetch mention from help if preferred, or keep as command
+          .forEach((line) => {
+            newHistory.push({ type: 'output', text: line });
+          });
         break;
 
       case 'neofetch':
         newHistory.push({
           type: 'neofetch',
-          text: [
-            "  ███╗   ███╗██╗████████╗██╗  ██╗██╗   ██╗███╗   ██╗",
-            "  ████╗ ████║██║╚══██╔══╝██║  ██║██║   ██║████╗  ██║",
-            "  ██╔████╔██║██║   ██║   ███████║██║   ██║██╔██╗ ██║",
-            "  ██║╚██╔╝██║██║   ██║   ██╔══██║██║   ██║██║╚██╗██║",
-            "  ██║ ╚═╝ ██║██║   ██║   ██║  ██║╚██████╔╝██║ ╚████║",
-            "  ╚═╝     ╚═╝╚═╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝",
-            "--------------------------------------------------",
-            `OS: Ubuntu Cosmic 24.04 LTS (x86_64)`,
-            `Host: Sri Eshwar AI Compute Node`,
-            `Kernel: 6.8.0-mithun-ai`,
-            `Uptime: 35+ Projects, 30+ Certs, 2 Internships`,
-            `Shell: zsh 5.9 (x86_64-ubuntu)`,
-            `Role: AI & Data Science Undergraduate`,
-            `Focus: Generative AI, LLMs, Agents, Digital Twins`,
-            `Status: Available for High-Impact Engagements`
-          ].join('\n')
+          text: NEOFETCH_TEXT
         });
         break;
 
@@ -126,11 +145,6 @@ export default function TerminalModal({ isOpen, onClose }) {
         newHistory.push({ type: 'output', text: new Date().toString() });
         break;
 
-      case 'clear':
-        setHistory([]);
-        setInput('');
-        return;
-
       default:
         newHistory.push({
           type: 'error',
@@ -147,7 +161,8 @@ export default function TerminalModal({ isOpen, onClose }) {
     handleCommand(input);
   };
 
-  const quickCommands = ['neofetch', 'projects', 'skills', 'experience', 'contact', 'clear'];
+  // Neofetch removed as quick option since it is now permanently default
+  const quickCommands = ['projects', 'skills', 'experience', 'contact', 'clear'];
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md">
@@ -171,9 +186,9 @@ export default function TerminalModal({ isOpen, onClose }) {
               title="Maximize / Restore"
             />
             <button
-              onClick={() => setHistory([])}
+              onClick={() => setHistory(getInitialHistory())}
               className="w-3 h-3 rounded-full bg-green-500 hover:brightness-125 transition-all"
-              title="Clear"
+              title="Reset / Clear to Neofetch"
             />
           </div>
 
@@ -224,6 +239,13 @@ export default function TerminalModal({ isOpen, onClose }) {
             if (line.type === 'input') {
               return (
                 <div key={idx} className="text-amber-400 font-semibold">
+                  {line.text}
+                </div>
+              );
+            }
+            if (line.type === 'system') {
+              return (
+                <div key={idx} className="text-zinc-500 text-[11px]">
                   {line.text}
                 </div>
               );
@@ -280,4 +302,3 @@ export default function TerminalModal({ isOpen, onClose }) {
     </div>
   );
 }
-
