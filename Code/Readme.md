@@ -61,11 +61,7 @@ npm run preview
 - Central solar core with pulsating icosahedron wireframe geometry.
 - 1,200+ particle dust stars with mouse parallax damping and scroll interpolation.
 
-### 2. Procedural Web Audio Soundscape (`src/components/AudioSynthesizer.jsx`)
-- Harmonic F# minor drone synthesized procedurally in real-time using the native **Web Audio API**.
-- Zero external MP3/WAV dependencies; ultra-lightweight and toggled from the navbar.
-
-### 3. Integrated Ubuntu Terminal CLI (`src/components/TerminalModal.jsx`)
+### 2. Integrated Ubuntu Terminal CLI (`src/components/TerminalModal.jsx`)
 - Interactive Ubuntu shell with user prompt `mithun@universe:~$`.
 - Supports commands:
   - `neofetch` — Display ASCII art logo, hardware host, kernel, uptime, and system status.
@@ -79,7 +75,7 @@ npm run preview
   - `clear` — Wipe terminal buffer clean.
   - `help` — List available commands.
 
-### 4. 15 Real-World Production Projects (`src/components/ProjectsSection.jsx`)
+### 3. 15 Real-World Production Projects (`src/components/ProjectsSection.jsx`)
 Filterable by category (AI & ML, NLP, Computer Vision, Cloud & DevOps, Web & Systems) and real-time search:
 1. **FluxSense** — Acoustic Transformer Health Monitoring System (CNN + Spectrograms).
 2. **Crime Abstractor** — NLP-based crime report analysis and semantic clustering.
@@ -97,7 +93,7 @@ Filterable by category (AI & ML, NLP, Computer Vision, Cloud & DevOps, Web & Sys
 14. **CRM for Student & Teacher Management** — Academic communication and task tracking CRM.
 15. **Codelab Annotation Tasks** — International dataset engineering and quality refinement.
 
-### 5. Contact Channels & Interactive Dispatch (`src/components/ContactSection.jsx`)
+### 4. Contact Channels & Interactive Dispatch (`src/components/ContactSection.jsx`)
 - Direct 1-click clipboard copy for email (`mmithun1701@gmail.com`) and phone (`+91 93611 23237`).
 - Secure contact form with instantaneous cosmic confetti burst on transmission.
 
@@ -123,7 +119,6 @@ Code/
     │   └── portfolioData.js      # All 15 projects, internships, skills, telemetry
     └── components/
         ├── CosmicBackground.jsx  # Three.js celestial rings & particle scene
-        ├── AudioSynthesizer.jsx  # Procedural Web Audio API soundscape
         ├── CustomCursor.jsx      # Magnetic glowing pointer aura
         ├── Navbar.jsx            # Glassmorphic header with CLI & audio pills
         ├── Hero.jsx              # Cinematic opening with live stats

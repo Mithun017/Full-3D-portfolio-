@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Terminal, Github, Linkedin, Menu, X, Sparkles } from 'lucide-react';
-import AudioSynthesizer from './AudioSynthesizer';
 import { portfolioData } from '../data/portfolioData';
 
 export default function Navbar({ onOpenTerminal }) {
@@ -64,8 +63,6 @@ export default function Navbar({ onOpenTerminal }) {
 
         {/* Right Action Utilities */}
         <div className="hidden lg:flex items-center gap-3">
-          <AudioSynthesizer />
-
           {/* Terminal Trigger */}
           <button
             onClick={onOpenTerminal}
@@ -101,7 +98,6 @@ export default function Navbar({ onOpenTerminal }) {
 
         {/* Mobile menu trigger */}
         <div className="flex items-center gap-2 md:hidden">
-          <AudioSynthesizer />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="p-2 rounded-lg bg-zinc-900/60 border border-zinc-800 text-zinc-300 hover:text-white"

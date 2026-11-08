@@ -20,7 +20,6 @@ This project combines two distinct paradigms:
    - Interactive concentric solar rings rotating with physics inertia and depth
    - Luminous central solar core with pulsating geometry
    - Ambient celestial particle dust reacting to mouse parallax and scroll position
-   - Procedural ambient soundscape generated dynamically via the **Web Audio API**
    - Luxury typography with Cinzel, Plus Jakarta Sans, and JetBrains Mono
    - Fluid custom glowing cursor with trailing magnetic aura
 
@@ -72,7 +71,6 @@ This project combines two distinct paradigms:
         │   └── portfolioData.js    # Verified portfolio data (15 projects, skills, history)
         └── components/
             ├── CosmicBackground.jsx # Three.js solar rings & particle canvas
-            ├── AudioSynthesizer.jsx # Web Audio API celestial ambient soundscape
             ├── CustomCursor.jsx    # Magnetic glowing pointer aura
             ├── Navbar.jsx          # Glassmorphic header with CLI and audio controls
             ├── Hero.jsx            # Cinematic opening with stats and call-to-actions
